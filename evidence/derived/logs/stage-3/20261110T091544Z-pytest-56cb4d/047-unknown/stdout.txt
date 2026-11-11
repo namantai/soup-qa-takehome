@@ -1,0 +1,4 @@
+Loading config from input.yaml...
+Config validation error:
+
+  unknown config key 'qa_unknown_a' - refused.

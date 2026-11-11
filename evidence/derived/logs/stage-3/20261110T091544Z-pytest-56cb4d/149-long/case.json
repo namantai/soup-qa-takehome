@@ -1,0 +1,10 @@
+{
+  "category": "long",
+  "description": "Invalid task enum string of 2048 characters; length alone is not the oracle",
+  "expected_exit_code": 1,
+  "diagnostic": [
+    "task"
+  ],
+  "oracle": "https://trysoup.dev/docs/configuration",
+  "input_sha256": "bb54c5bbcd41ef985978fa058bf72a0889e45983a01e109f9a86cdf960752b5e"
+}

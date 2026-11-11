@@ -1,0 +1,10 @@
+{
+  "behavior": "ACCEPTED",
+  "assessment": "FAIL",
+  "problems": [
+    "expected exit 1, got 0",
+    "missing diagnostic: dropout",
+    "invalid input reported ready to train"
+  ],
+  "artifacts": []
+}

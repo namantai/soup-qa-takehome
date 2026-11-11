@@ -1,0 +1,4 @@
+warning: The `--system` flag has no effect, `uv venv` always ignores virtual environments when finding a Python interpreter; did you mean `--no-managed-python`?
+Using CPython 3.11.16
+Creating virtual environment at: .repro-venv
+Activate with: source .repro-venv/bin/activate

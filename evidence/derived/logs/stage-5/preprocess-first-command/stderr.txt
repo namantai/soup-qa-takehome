@@ -1,0 +1,16 @@
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "<PROJECT>/scripts/probe_preprocess.py", line 76, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "<PROJECT>/scripts/probe_preprocess.py", line 41, in main
+    parsed=SoupConfig.model_validate(configured)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<PROJECT>/.venv/lib/python3.11/site-packages/pydantic/main.py", line 792, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for SoupConfig
+  Value error, training.eval_steps is set, but there is nothing to evaluate: data.val_split is 0 and data.train names no source that carries its own validation split (an HF-hub dataset or a pre-tokenized cache). Set data.val_split above 0, or remove training.eval_steps (#1223) [type=value_error, input_value={'base': 'runs/returned/s...': './runs/repro/run-a'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/value_error

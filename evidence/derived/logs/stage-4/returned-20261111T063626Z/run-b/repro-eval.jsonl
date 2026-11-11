@@ -1,0 +1,8 @@
+{"id": "heldout-1", "prompt": "### Instruction:\nReturn only the uppercase form of the input word.\n\n### Input:\nocean\n\n### Response:\n", "target": "OCEAN"}
+{"id": "heldout-2", "prompt": "### Instruction:\nReturn only the uppercase form of the input word.\n\n### Input:\ndance\n\n### Response:\n", "target": "DANCE"}
+{"id": "heldout-3", "prompt": "### Instruction:\nReturn only the uppercase form of the input word.\n\n### Input:\ntiger\n\n### Response:\n", "target": "TIGER"}
+{"id": "heldout-4", "prompt": "### Instruction:\nReturn only the uppercase form of the input word.\n\n### Input:\nfield\n\n### Response:\n", "target": "FIELD"}
+{"id": "heldout-5", "prompt": "### Instruction:\nReturn only the uppercase form of the input word.\n\n### Input:\nnorth\n\n### Response:\n", "target": "NORTH"}
+{"id": "heldout-6", "prompt": "### Instruction:\nReturn only the uppercase form of the input word.\n\n### Input:\nsouth\n\n### Response:\n", "target": "SOUTH"}
+{"id": "heldout-7", "prompt": "### Instruction:\nReturn only the uppercase form of the input word.\n\n### Input:\nmetal\n\n### Response:\n", "target": "METAL"}
+{"id": "heldout-8", "prompt": "### Instruction:\nReturn only the uppercase form of the input word.\n\n### Input:\ncolor\n\n### Response:\n", "target": "COLOR"}

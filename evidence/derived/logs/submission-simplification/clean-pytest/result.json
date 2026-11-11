@@ -1,0 +1,16 @@
+{
+  "command": [
+    "bash",
+    "--noprofile",
+    "--norc",
+    "-c",
+    "source .venv/bin/activate && python -m pytest -q"
+  ],
+  "cwd": "<PROJECT>/runs/submission-simplification/clean",
+  "environment_overrides": {},
+  "started_utc": "2026-11-11T16:56:25.579482+00:00",
+  "timeout_seconds": 600,
+  "exit_code": 1,
+  "termination": null,
+  "duration_seconds": 96.91547308000008
+}

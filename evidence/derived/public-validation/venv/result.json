@@ -1,0 +1,15 @@
+{
+  "command": [
+    "python3.11",
+    "-m",
+    "venv",
+    ".venv"
+  ],
+  "cwd": "<LOCAL_PATH>",
+  "environment_overrides": {},
+  "started_utc": "2026-11-11T17:40:30.172996+00:00",
+  "timeout_seconds": 120,
+  "exit_code": 0,
+  "termination": null,
+  "duration_seconds": 2.070997611999701
+}

@@ -1,0 +1,12 @@
+{
+  "exit_code": 2,
+  "decision": "DON'T SHIP",
+  "failed_rule": "task_win",
+  "won": false,
+  "regressions": {
+    "general": true
+  },
+  "threshold": "0.05",
+  "source": "https://trysoup.dev/docs/soup-ship",
+  "arithmetic": "Decimal of input literals; no hidden epsilon"
+}

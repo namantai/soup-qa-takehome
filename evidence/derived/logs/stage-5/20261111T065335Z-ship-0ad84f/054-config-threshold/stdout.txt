@@ -1,0 +1,17 @@
+╭───────────────────────────────────────────────────── soup ship ──────────────────────────────────────────────────────╮
+│ DON'T SHIP                                                                                                           │
+│ Leg 1 task win (metric): 0.4000 -> 0.6000  [won]                                                                     │
+│ Judge numerics: unstamped                                                                                            │
+│                                                                                                                      │
+│ Leg 2 general suite (threshold 0.00%)                                                                                │
+│ ┏━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━┓                                                                │
+│ ┃ Benchmark ┃   Base ┃  Tuned ┃       Δ ┃ Verdict   ┃                                                                │
+│ ┡━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━┩                                                                │
+│ │ general   │ 0.8000 │ 0.7900 │ -0.0100 │ REGRESSED │                                                                │
+│ └───────────┴────────┴────────┴─────────┴───────────┘                                                                │
+│                                                                                                                      │
+│ General benchmark(s) regressed past 0.00%: general. Catastrophic forgetting — DON'T SHIP even though the task        │
+│ improved.                                                                                                            │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Wrote verdict.json
+Wrote evidence emitted.json

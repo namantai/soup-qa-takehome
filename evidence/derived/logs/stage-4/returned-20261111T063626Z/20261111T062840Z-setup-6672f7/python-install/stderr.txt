@@ -1,0 +1,3 @@
+Installed Python 3.11.16 in 1.05s
+ + cpython-3.11.16-linux-x86_64-gnu (python3.11)
+warning: `<LOCAL_PATH> is not on your PATH. To use installed Python executables, run `export PATH="<LOCAL_PATH>"` or `uv python update-shell`.

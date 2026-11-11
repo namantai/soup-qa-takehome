@@ -1,0 +1,4 @@
+Loading config from input.yaml...
+Config validation error:
+
+  base: Field required

@@ -1,0 +1,8 @@
+{
+  "behavior": "ACCEPTED",
+  "assessment": "FAIL",
+  "problems": [
+    "missing diagnostic: 20 train samples"
+  ],
+  "artifacts": []
+}

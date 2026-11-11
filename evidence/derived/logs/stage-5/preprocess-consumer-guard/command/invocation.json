@@ -1,0 +1,25 @@
+{
+  "command": [
+    "<PROJECT>/.venv/bin/soup",
+    "train",
+    "--config",
+    "logs/stage-5/preprocess-consumer-guard/config.yaml",
+    "--dry-run"
+  ],
+  "cwd": "<PROJECT>",
+  "environment_overrides": {
+    "HF_HUB_OFFLINE": "1",
+    "HF_DATASETS_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "HF_HUB_DISABLE_TELEMETRY": "1",
+    "WANDB_MODE": "disabled",
+    "DO_NOT_TRACK": "1",
+    "CUDA_VISIBLE_DEVICES": "",
+    "NO_COLOR": "1",
+    "TERM": "dumb",
+    "COLUMNS": "120",
+    "PYTHONHASHSEED": "0"
+  },
+  "started_utc": "2026-11-11T06:58:54.420452+00:00",
+  "timeout_seconds": 30
+}

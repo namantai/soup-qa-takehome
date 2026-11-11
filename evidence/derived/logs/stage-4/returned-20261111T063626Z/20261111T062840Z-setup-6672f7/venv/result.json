@@ -1,0 +1,20 @@
+{
+  "command": [
+    "<LOCAL_PATH>",
+    "venv",
+    "--managed-python",
+    "--python",
+    "3.11.16",
+    ".repro-venv"
+  ],
+  "cwd": "<LOCAL_PATH>",
+  "environment_overrides": {
+    "UV_CACHE_DIR": "<LOCAL_PATH>",
+    "UV_PYTHON_INSTALL_DIR": "<LOCAL_PATH>"
+  },
+  "started_utc": "2026-11-11T06:28:45.912761+00:00",
+  "timeout_seconds": 900,
+  "exit_code": 0,
+  "termination": null,
+  "duration_seconds": 0.21459788099997468
+}

@@ -1,0 +1,59 @@
+.F.....F..................F........F....                                                                         [100%]
+======================================================= FAILURES =======================================================
+_____________________________________________ test_wrong_integer_argument ______________________________________________
+tests/test_cli.py:15: in test_wrong_integer_argument
+    @given(value=st.text(alphabet='abcdef', min_size=1, max_size=16))
+                   ^^^^^^^^^^^
+tests/test_cli.py:17: in test_wrong_integer_argument
+    run(evidence, 'cli-type', baseline(), args=['--nodes', value], code=2,
+tests/cases.py:35: in run
+    check(evidence.run(category, yaml.safe_dump(config, sort_keys=False).encode(),
+scripts/evidence.py:150: in check
+    assert not problems, f"{case.relative_to(ROOT)}: {'; '.join(problems)}"
+           ^^^^^^^^^^^^
+E   AssertionError: logs/stage-3/20261110T090946Z-pytest-1bcd32/096-cli-type: missing diagnostic: integer
+E   Failing test case: test_wrong_integer_argument(
+E       evidence=<scripts.evidence.Evidence object at 0x7fcf9acc0750>,
+E       value='a',  # or any other generated value
+E   )
+____________________________________________ test_conflicting_tracker_flags ____________________________________________
+tests/test_cli.py:40: in test_conflicting_tracker_flags
+    run(evidence, 'cli-conflict', baseline(), args=['--tracker', 'mlflow', '--wandb'], code=1,
+tests/cases.py:35: in run
+    check(evidence.run(category, yaml.safe_dump(config, sort_keys=False).encode(),
+scripts/evidence.py:150: in check
+    assert not problems, f"{case.relative_to(ROOT)}: {'; '.join(problems)}"
+           ^^^^^^^^^^^^
+E   AssertionError: logs/stage-3/20261110T090946Z-pytest-1bcd32/109-cli-conflict: missing diagnostic: tracker
+__________________________________________ test_dropout_probability_above_one __________________________________________
+tests/test_config.py:103: in test_dropout_probability_above_one
+    @given(value=st.integers(11, 30).map(lambda n: n/10))
+                   ^^^^^^^^^^^
+tests/test_config.py:105: in test_dropout_probability_above_one
+    run(evidence, 'range-dropout', changed('training.lora.dropout', value),
+tests/cases.py:35: in run
+    check(evidence.run(category, yaml.safe_dump(config, sort_keys=False).encode(),
+scripts/evidence.py:150: in check
+    assert not problems, f"{case.relative_to(ROOT)}: {'; '.join(problems)}"
+           ^^^^^^^^^^^^
+E   AssertionError: logs/stage-3/20261110T090946Z-pytest-1bcd32/186-range-dropout: expected exit 1, got 0; missing diagnostic: dropout; invalid input reported ready to train
+E   Failing test case: test_dropout_probability_above_one(
+E       evidence=<scripts.evidence.Evidence object at 0x7fcf9acc0750>,
+E       value=1.1,  # or any other generated value
+E   )
+_________________________________________ test_missing_empty_null[base-empty] __________________________________________
+tests/test_config.py:116: in test_missing_empty_null
+    run(evidence, 'empty', changed(path, values[mode], remove=(mode == 'missing')),
+tests/cases.py:35: in run
+    check(evidence.run(category, yaml.safe_dump(config, sort_keys=False).encode(),
+scripts/evidence.py:150: in check
+    assert not problems, f"{case.relative_to(ROOT)}: {'; '.join(problems)}"
+           ^^^^^^^^^^^^
+E   AssertionError: logs/stage-3/20261110T090946Z-pytest-1bcd32/195-empty: expected exit 1, got 0; missing diagnostic: base; invalid input reported ready to train
+Original CLI evidence: logs/stage-3/20261110T090946Z-pytest-1bcd32
+=============================================== short test summary info ================================================
+FAILED tests/test_cli.py::test_wrong_integer_argument - AssertionError: logs/stage-3/20261110T090946Z-pytest-1bcd32/0...
+FAILED tests/test_cli.py::test_conflicting_tracker_flags - AssertionError: logs/stage-3/20261110T090946Z-pytest-1bcd3...
+FAILED tests/test_config.py::test_dropout_probability_above_one - AssertionError: logs/stage-3/20261110T090946Z-pytes...
+FAILED tests/test_config.py::test_missing_empty_null[base-empty] - AssertionError: logs/stage-3/20261110T090946Z-pyte...
+4 failed, 36 passed in 97.54s (0:01:37)

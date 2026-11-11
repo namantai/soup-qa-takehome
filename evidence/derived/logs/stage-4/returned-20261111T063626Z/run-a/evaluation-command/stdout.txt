@@ -1,0 +1,6 @@
+{
+  "arm": "a",
+  "examples": 8,
+  "mean_nll": 4.00261049087231,
+  "exact_match_accuracy": 0.0
+}

@@ -1,0 +1,14 @@
+{
+  "command": [
+    "<PROJECT>/runs/stage7-clean-check/.venv/bin/python",
+    "-m",
+    "scripts.run_local_tests"
+  ],
+  "cwd": "<PROJECT>/runs/stage7-clean-check",
+  "environment_overrides": {},
+  "started_utc": "2026-11-11T14:05:00.902998+00:00",
+  "timeout_seconds": 360,
+  "exit_code": 1,
+  "termination": null,
+  "duration_seconds": 177.82137809100004
+}

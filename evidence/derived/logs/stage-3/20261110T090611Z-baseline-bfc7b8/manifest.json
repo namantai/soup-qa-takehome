@@ -1,0 +1,15 @@
+{
+  "packages": {
+    "soup-cli": "0.77.2",
+    "pytest": "9.2.0",
+    "hypothesis": "6.170.15",
+    "PyYAML": "6.0.3"
+  },
+  "input_hashes": {
+    "AGENTS.md": "3d876dd1eb335d9804d6a2ffb0a4cc9ae1c84e8e884e46b45308bcb9b8783f8d",
+    "CODEX_PROMPT.md": "6d65561d2f98fa649b677d0f62997e41ac05f179698c00e6837325cf9a99dc3f",
+    "docs/test-strategy-reviewed.md": "04b47614c866ef53fb3551d76fbe199f6ecaf7821f330f3b9410a79b84e1c07b",
+    "quickstart_soup.yaml": "824945378732908c262ec5962c47d2a1ffc024eaf97cf6ca3a9b99581620b67f",
+    "quickstart_data.jsonl": "b13e15b1cbcd5268125efc26419208c6350a7e479b661323a8ebfc2c1845d056"
+  }
+}

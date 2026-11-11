@@ -1,0 +1,31 @@
+{
+  "command": [
+    "../../../../.venv/bin/soup",
+    "ship",
+    "--evidence",
+    "input.json",
+    "--output",
+    "verdict.json"
+  ],
+  "cwd": "logs/stage-5/20261111T065335Z-ship-0ad84f/032-malformed",
+  "started_utc": "2026-11-11T06:53:58.806672+00:00",
+  "timeout_seconds": 30,
+  "output_limit_bytes": 262144,
+  "environment_overrides": {
+    "HF_HUB_OFFLINE": "1",
+    "HF_DATASETS_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "HF_HUB_DISABLE_TELEMETRY": "1",
+    "WANDB_MODE": "disabled",
+    "DO_NOT_TRACK": "1",
+    "CUDA_VISIBLE_DEVICES": "",
+    "NO_COLOR": "1",
+    "TERM": "dumb",
+    "COLUMNS": "120",
+    "PYTHONHASHSEED": "0"
+  },
+  "exit_code": 3,
+  "duration_seconds": 0.7993488380006966,
+  "stopped_by_harness": null,
+  "output_bytes": 58
+}

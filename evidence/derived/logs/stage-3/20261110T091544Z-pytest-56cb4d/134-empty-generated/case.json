@@ -1,0 +1,10 @@
+{
+  "category": "empty-generated",
+  "description": "Empty/whitespace numeric field training.epochs: ''",
+  "expected_exit_code": 1,
+  "diagnostic": [
+    "epochs"
+  ],
+  "oracle": "https://trysoup.dev/docs/configuration; https://trysoup.dev/docs/seeds-and-reproducibility: numeric fields require values",
+  "input_sha256": "59fe65d1c1e5523ab7ad98cd320d24efdfac85aafee84ebdbc71a9bbb6d03c79"
+}

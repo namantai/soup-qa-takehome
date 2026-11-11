@@ -1,0 +1,16 @@
+{
+  "command": [
+    "<LOCAL_PATH>",
+    "-m",
+    "pip",
+    "install",
+    "uv==0.13.1"
+  ],
+  "cwd": "<LOCAL_PATH>",
+  "environment_overrides": {
+    "UV_CACHE_DIR": "<LOCAL_PATH>",
+    "UV_PYTHON_INSTALL_DIR": "<LOCAL_PATH>"
+  },
+  "started_utc": "2026-11-11T06:28:40.854819+00:00",
+  "timeout_seconds": 900
+}

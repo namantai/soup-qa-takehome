@@ -1,0 +1,557 @@
+PUBLIC DERIVATIVE: visible text extracted from the original HTML snapshot; contact addresses removed.
+
+Exit codes · Soup CLI Docs | Soup CLI
+Skip to content
+Soup
+ZerosoonDocsPyPIGitHubDiscordSupport$pip install "soup-cli[train]"Get Started
+
+
+All docs
+/
+Getting Started
+Installation
+Configuration
+Decide
+Training Intelligencev0.25
+soup advise: pre-flight decision enginev0.54
+Pre-flight & Toolingv0.64
+Fine-tune Doctorv0.71.27
+Eval-Gated Trainingv0.26
+soup eval design: derive evals from datav0.55
+Eval Depthv0.65
+Quant-Lobotomy Checkv0.26
+soup diagnose: post-training model report cardv0.56
+Post-train X-raysv0.66
+Tracker & Eval Prov0.43
+Train
+Training Methods
+Backends & Performance
+Vision & Audio
+Autopilotv0.25
+Apple Silicon MLXv0.77.2
+Tool-Callingv0.25
+RLVR: Verifiable Rewardsv0.25
+Multi-GPU Masteryv0.27
+Speed & Memoryv0.28
+Training Stabilityv0.32
+Reproducibilityv0.73.1
+Trainer Speed & Memoryv0.35
+Multipack: FFD Bin-Packing Samplerv0.37
+LoRA Qualityv0.39
+Preference Varietyv0.40
+Optimizer Zoov0.41
+Long Contextv0.49
+GRPO Plusv0.50
+Modality IIv0.52
+Agent Forgev0.46
+Unlearning & knowledge editingv0.61
+RAG & Steeringv0.62
+Prompt Compile & Distillv0.68
+Loop Hardeningv0.70
+Reward-Hack Auto-Mitigationv0.71.26
+Lean Install + Live Wiringv0.71
+Spectrum Trainingv0.71
+LISAv0.71.34
+Model Shrinkv0.71.29
+PRM-guided GRPOv0.71.30
+Online DPOv0.71.31
+ASR (Whisper)v0.71.32
+Reward Forgev0.71.41
+Layer Streamingv0.72.2
+Streaming: Scalev0.72.3
+Streaming: Alignv0.72.4
+Streaming: Disk tierv0.76.0
+Streaming: MoEv0.77.0
+The paper
+External validation
+Measurement records
+Data
+Data Formats
+Data Tools
+Clean a datasetv0.76.0
+Data Augmentationv0.25
+Trace → Preferencev0.26
+Data Pipeline Prov0.42
+Data Forgev0.47
+Data Mixingv0.48
+Trace Ecosystemv0.63
+Data Engineering Prov0.69
+Data Moat IIv0.71.36
+Best-of-N & Evolvev0.71.31
+Ship
+Ship Verdictv0.71.25
+Inference Server
+Model Export
+Model Registryv0.26
+HuggingFace Hubv0.29
+Smart Inference Serverv0.30
+Draft & Spec Decodingv0.71.33
+Quant Menuv0.38
+Quant Menu IIv0.53
+Model Catalogv0.51
+Operate
+Experiment Tracking
+soup rewindv0.76.0
+soup benchv0.76.0
+Web UI
+Soup Cansv0.26
+Soup Cans v2 + LR Finderv0.33
+Observability & Dev UXv0.34
+Live Dashboardv0.44
+Plugin System & Ecosystemv0.45
+soup adapters: git for LoRAv0.57
+Adapter check & auditv0.76.0
+soup loop: the production data flywheelv0.58
+Adapter Lifecyclev0.67
+Adapter Algebrav0.71.34
+MCP Serverv0.71.28
+Secure & Govern
+Correctness Firstv0.36
+Governance, BOM & SLSA-3 attestationsv0.59
+Supply-chain Securityv0.60
+Compliance Packv0.71.35
+Recipes & Migration
+Recipes
+Recipe catalog
+Recipe Expansionv0.31
+Migration
+How-To Guides
+Fine-tune Llama 3.1 with LoRA
+Fine-tune Qwen 3 on a custom dataset
+Fine-tune Gemma 3 with QLoRA on a single GPU
+Export to GGUF and deploy on Ollama
+DPO training: align LLMs with human preferences
+Migrate from LLaMA-Factory to Soup CLI
+Migrate from Axolotl to Soup CLI
+Multi-GPU training with DeepSpeed ZeRO-3
+Reference
+CLI Reference
+Exit codes
+Settings refused at loadv0.77.0
+FAQ
+Env vars and files
+Contributing
+Release Notes
+What's newv0.77.2
+v0.77.2v0.77.2
+v0.77.1v0.77.1
+v0.77.0v0.77.0
+v0.76.1v0.76.1
+v0.76.0v0.76.0
+v0.75.2v0.75.2
+v0.75.1v0.75.1
+v0.75.0v0.75.0
+v0.74.0v0.74.0
+v0.73.3v0.73.3
+v0.73.2v0.73.2
+v0.73.1v0.73.1
+v0.73.0v0.73.0
+Quant Menu II live writersv0.53.1
+Modality II live trainersv0.53.2
+Plugins, Anthropic, toolsv0.53.6
+Remote data & alt hubsv0.53.8
+Live SSE & Web UIv0.53.9
+GRPO Plus + preferencev0.53.11
+
+
+Exit codes
+The commands that gate a pipeline report their verdict through the exit code. This page lists what each command returns at v0.77.2. v0.77.2 keeps the eleven-command scheme and changes ten results that its release notes list: six commands (soup distill-prompt, soup data evolve and gen-magpie, soup data filter --perplexity, soup data dedup --field, soup registry push --run-id) now stop with a non-zero code where v0.77.1 exited 0; soup eval quant-check reports an unparseable --tasks file as 3 before any model loads, soup plan and soup apply report malformed YAML or an unreadable config as 2, soup quantize reports a --to value Rich read as markup as 2, soup ship --progress jsonl exits 130 on Ctrl+C, and soup loop status exits 2 on a stored spend that is not a finite number (what v0.77.2 adds). v0.77.1 kept the eleven-command scheme and moved one code inside it, a soup eval gate suite that is not valid YAML (1 to 3); the rest of it is refusals under codes the commands already used, and soup plan and soup apply going from 0 to 1 on a config soup train refuses (what v0.77.1 adds). v0.77.0 kept the eleven-command scheme of v0.76.0 and moved none of its codes: it added new conditions under codes these commands already used, and two new uses of 3 outside the scheme (what v0.77.0 adds). v0.76.1 moved no code either: its YAML read limits refuse under codes the commands already used (what v0.76.1 adds). v0.76.0 moved eleven of them onto one scheme and changed which number means "the gate said no" on several, so a CI step written against v0.75.2 can now pass a failing gate without saying so. Read what moved before anything else.
+Wherever it could be done without a model or a network service, each row was checked at v0.76.0 by running the command against a small local fixture: soup ship, soup expect, soup data validate, soup data lint, soup lock check, soup lock show, soup lock write, soup eval gate, soup eval against (its error branches), soup eval quant-check (its error and --allow-stub branches), soup eval behavior, soup eval checklist, soup eval unlearning, soup diagnose (the --evidence path), soup plan, soup apply, soup train (its config refusals), soup doctor --config, soup attest emit --sign sigstore without the extra, soup plugins install, soup ab, soup data clean and soup rewind. Rows for commands that need a model, a GPU, an adapter or a network service (a MAJOR verdict from soup eval quant-check, soup data canary check, soup draft measure, the verdict of soup shrink, soup probe, soup adapters scan, soup adapters check, soup adapters audit, soup recipes verify, soup bench train, soup can run, soup ui, the live paths of soup eval behavior and soup diagnose) were read from the call site and not run, and so were the rarer error branches elsewhere, such as the hardware-fit refusal in soup train. The rows that read a YAML config or suite (soup train, soup doctor --config, soup plan, soup apply, soup ship --config, soup eval gate --suite and the config-read branch of soup adapters audit) and the error branches of soup eval quant-check were run again on the v0.76.1 binary. Most rows that v0.77.0 changed were run on the v0.77.0 binary beside the v0.76.1 tree; the --strategy cmaes row and the judge_rank budget and Sesame CSM refusals of soup train were read from the call site. The rows that v0.77.1 changed or added were run on the v0.77.1 binary, most of them beside the v0.77.0 tree: soup eval gate with a malformed suite, soup train --gate, soup plan, soup apply, soup ship --config and --progress jsonl, soup recipes verify --config, soup data with an --output that names an input (each of the eighteen commands, with the same string or a default output name), soup adapters bisect, soup adapters check, diff, scan, merge and arithmetic with NumPy made unimportable, soup train --cloud lambda, soup profile and soup infer --backend. The one exit that was read from the call site is the --progress jsonl exit 1 on an unexpected exception, and a symbolic link or a Windows spelling of the same path was not run. The rows that v0.77.2 changed were run on the v0.77.2 binary: soup plan and soup apply (malformed YAML, a config that cannot be read, an unknown key, and a distill config with and without --minillm-on-policy), soup eval quant-check (a --tasks file with invalid JSON, with a row missing prompt and with a name that does not end in .jsonl, and a model that does not load), soup distill-prompt, soup data dedup --field, soup data filter --perplexity and --score-only without torch, soup quantize --to "[/]", soup registry push --run-id on a running, a failed and a completed run, soup loop status on a hand-edited state, and soup serve --tool-auth-token. The soup ship --progress jsonl exits 130 and 1 and the soup data evolve and gen-magpie exit 1 (which needs a provider) were read from the call site; the release notes say the 130 was not exercised by hand.
+The PR gate that soup ci init writes runs soup data validate (with --min-valid-fraction 1.0 in a workflow generated by v0.77.0, so one row that does not convert fails the job; an existing workflow keeps its old step until you regenerate it with soup ci init --force), soup expect and soup ship --evidence in that order, and a non-zero exit from any step fails the job. Everything below is what those exits, and the rest, mean.
+The scheme the gate commands share
+soup_cli.utils.exit_codes defines four values. Eleven commands adopt the scheme as a whole, a mistyped flag included: soup ship, soup expect, soup data validate, soup data lint, soup eval gate, soup eval quant-check, soup eval against, soup eval behavior, soup eval checklist, soup lock check and soup recipes verify.
+0 the check passed.
+1 something broke that is not about your input: a model that would not load, an unwritable output, an unexpected exception, an unreachable judge.
+2 the gate said no: a failed check, a regression, drift, DON'T SHIP, a MAJOR verdict, a failed expectation.
+3 the invocation or an input is wrong: a missing or unparseable file, a bad value, an unknown flag, a schema the command rejects.
+Every other command keeps its own scheme, listed in the tables below, although a few individual codes moved too (the last rows of the table above), and several of them still use 2 for a rejected argument and 3 for a failed check. Do not carry the scheme over to a sibling: soup diagnose borrowed 3 for three conditions (a NOT_RUN verdict, --attach-to-registry without --output, a bad --tokenizer) and kept 2 for the rest, and soup data doctor, soup eval unlearning and soup probe sit next to commands that moved and did not move with them.
+What moved in v0.76.0, and the CI step that now passes silently
+
+CommandConditionv0.75.2v0.76.0
+soup eval gatea task failed or regressed12
+soup eval gatesuite missing, outside the working directory or failing the schema; baseline missing or not valid JSON; threshold out of range; --write-baseline without --model13
+soup eval againstregression12
+soup eval againstbad --metric, locked suite invalid, no series for a run13
+soup lock checkdrift32
+soup lock checklock file missing or unparseable, malformed SHA23
+soup lock showlock file missing23
+soup expectan expectation failed32
+soup expectsuite or data rejected23
+soup eval quant-checka task is MAJOR02
+soup eval quant-checka model fails to load0 (a stub scored it)1, unless --allow-stub
+soup eval quant-checkmissing path, unknown --format, .gguf1 or stub3
+soup eval behavior, soup eval checklistrun without --evidence (for behavior, also without --base-model)0 (neutral OK)3
+soup data validatemissing file, unknown or undetectable format13
+soup data lintmissing path, empty dataset, not preference data1 or 23
+soup shipevidence missing, not JSON or malformed13
+the eleven commands in the schemeunknown flag, missing option, malformed number23
+soup diagnosea requested probe did not runscored OK3 (NOT_RUN)
+soup diagnose, soup eval unlearning--attach-to-registry without --outputskipped, 03 for diagnose, 2 for unlearning
+soup diagnose, soup eval unlearningthe registry attach failswarning, 01
+soup train --gpus N on Windowsthe launcher's exit code0 within secondsthe launcher's code
+soup plugins installany name0 (advisory)2
+soup eval benchmarknothing measured or saved01
+soup attest emit --sign sigstorethe Sigstore extra is not installed0 (unsigned statement)2, nothing written
+soup doctoran installed package in an extra group beyond its declared ceiling01
+The step that now passes silently is any test for the old number. A script that treats soup eval gate exit 1 as "the gate failed", or soup lock check exit 3 as "drift", or soup expect exit 3 as "an expectation failed", no longer matches a failing gate: it gets 2. A step written as "fail on any non-zero exit" keeps working and cannot tell the causes apart. Change the test to this:
+A failed gate is 2 on every command in the scheme, soup ship included (which already used it).
+3 means your invocation or input is wrong. Do not treat it as a regression, and do not swallow it: a typo in the CI file used to exit 2, which on soup ship read as DON'T SHIP, and on all eleven commands it now exits 3.
+1 means something crashed.
+The two files Soup generates were updated to match. The workflow from soup ci init wraps each of its three steps: exit 2 prints a step-specific message (data validation failed: unusable data, expectations suite failed: quality regression, gate rejected: model failed ship checks) and exits 2, and any other non-zero prints usage or configuration error (exit N) and exits with N. An older committed workflow still fails the job on any non-zero. The pre-push hook that soup eval gate-install writes now exits 2 on a regression and passes any other non-zero exit of soup eval against through, with [soup] pre-push gate error: configuration or usage error (exit N); before v0.76.0 it turned every non-zero exit into 1. The hook still does nothing unless SOUP_CANDIDATE_RUN_ID is set.
+What v0.77.0 adds
+v0.77.0 moves no exit code and keeps the eleven commands of v0.76.0 on one scheme. Most rows refuse something that used to pass, under codes these commands already used, so a CI step that passed on v0.76.1 can fail on v0.77.0; three rows go the other way (a non-object line in soup data validate, a bf16 soup adapters check, a non-object row in the data commands), and soup recipes use gains a 3 it did not use before.
+
+CommandConditionv0.76.1v0.77.0
+soup eval gatea suite with no tasks (a missing, empty or misspelled tasks list)0, GATE PASSED3
+soup eval gatetwo tasks with the same name03
+soup eval gatea baseline score that is not a finite number (NaN, -1e999, 1e999, an integer too large for a float)0, 2 or 1, depending on the value3
+soup eval gatea judge task whose prompts file is empty0 at threshold 02 (an ERROR row)
+soup train --gatea suite with no tasks or a repeated task name01
+soup data validatea line that is not valid JSON, with --min-valid-fraction 1.00 (the line was not counted)2
+soup data validatea line that is valid JSON but not an object1 (a crash)counted as invalid: 0, or 2 below --min-valid-fraction
+soup data validateonly unusable lines, with --format given1 (a crash) with a non-object line; 0 (0/0 rows valid) with only invalid-JSON lines2
+soup data pii, toxicity, score, langdetect, educational, decontaminatean input with no extractable text in any row (an empty file included), or a decontaminate --benchmark-file with none01
+soup drift-alarmno usable live or reference row (it reads output, response or text)0, OK1, no verdict panel
+soup sweepevery arm failed01
+soup sweepa --param that sets a staged field away from its default (a deprecated value such as data.remove_unused_columns=true is not pre-checked)01
+soup eval autono leg evaluated anything01
+soup ab--beta, at any value0 (a warning)2, before any row is read
+soup trainstandard input is a pipe or a redirected file, and neither --yes nor --dry-run is giventhe prompt read it3
+soup traina staged field set away from its default, or a deprecated value, in the config0 (a warning)1
+soup train --dry-runa preference task (dpo and the other pair tasks) on rows with no chosen and rejected01
+soup doctor --configa staged field set away from its default, or a deprecated value0 (a warning)2
+soup recipes usekimi-k2-sft, kimi-k2-thinking-grpo0 (config written)3, nothing written
+soup recipes verifya missing or unparseable --config on an install without torch1 (torch was checked first)3
+soup registry show, soup card and the other commands that take a name:tag referencethe name and tag match several entries0 (the newest was used)refused, listing the candidate ids: 1 for soup registry and soup card, 3 for soup eval quant-check and soup eval gate --baseline registry://..., 2 for soup adapters branch --from-registry
+soup loop watch --detachan invalid --poll-interval or --max-iterations0, and a child that exits at once2, nothing spawned
+soup ingest--output is the --logs file, or a hard link to it01
+soup export --format awq or gptqa Deprecated: line, then the usual checks (--calibration-data required)1 (the formats were removed)
+soup export --bits, --group-size, --calibration-samplesaccepted2 (No such option)
+soup quantize --to awq or gptq0 (it printed a command)2
+soup adapters merge --strategy cmaesevery evaluation failed0 (it wrote the first sample)2, nothing written
+soup adapters checka bfloat16 adapter10 or 2 (a verdict)
+soup data clean, inspect, stats, linta row that is not a JSON object1 (a crash)skipped with a warning
+Two of these use 3 outside the eleven commands: soup train on a piped or redirected standard input without --yes and soup recipes use on an unavailable recipe. (An ambiguous registry reference passed to soup eval quant-check or soup eval gate --baseline is also 3, but those commands are in the scheme, where 3 already meant a usage or input error.) Do not read them as the scheme spreading: soup train still uses 1 for a refused config and 2 for a mistyped flag, and soup recipes other than verify still uses 1 for an unknown name. Pass --yes to soup train in scripts and CI jobs. A step that expected soup adapters check to exit 1 on a bf16 adapter now gets a real verdict instead.
+What v0.77.1 adds
+v0.77.1 keeps the eleven commands of v0.76.0 on one scheme. It moves one code inside it (a soup eval gate suite that is not valid YAML, 1 to 3, which is what 3 already meant on that command), and it adds refusals under codes that were already in use, so a CI step that passed on v0.77.0 can fail on v0.77.1. soup plan and soup apply go from 0 to 1 on a config soup train refuses, which is the gap the v0.77.0 notes said was open.
+
+CommandConditionv0.77.0v0.77.1
+soup eval gatea suite that is not valid YAML, or whose top level is a non-empty list or scalar1, a bare Error: ParserError or Error: TypeError line3, Cannot load suite: and the file name
+soup plana staged field, a refused deprecated value or any other schema error in the config0, a plan written1, the Config validation error: lines soup train prints, no plan written, an existing state file unchanged
+soup apply, soup apply --dry-runthe same0, the config accepted1, the state file unchanged and not marked applied
+soup data pii, toxicity, langdetect, educational, decontaminate, doctor, topics, from-traces, canary insert, sample, dedup, filter, convert, merge, active-samplean --output (a default output name included) that is the same file as an inputwrote the result over the input; upstream: exit 01, before the data is read
+soup data lintthe sameran and wrote its report to that path; the code was the verdict's3
+soup data augment, soup data evolvethe same (evolve --plan-only included)wrote the result over the input; upstream: exit 02
+soup adapters bisecta fixed --eval-command program that is not on PATH2, after one probe, with a BROKEN_AT verdict naming the first checkpoint2, before the first probe, with no verdict
+soup train --cloud lambdaan output directory with a path part that starts with -0, a plan printed2, Cloud plan failed: Lambda output_dir parts must not start with '-'
+soup profilebatch_size, max_length or the model's size outside the range the estimate supports0, an estimate printed (checked with an oversized batch_size)1, Cannot estimate this run: ...
+Four things the table does not say.
+The refusal of an output that is an input is upstream's count of eighteen, and it is not every soup data command. The first five came in #2245 and the other thirteen in #2261. Each compares its outputs with its inputs before the data is read; for some commands a missing input file is still reported first (sample, dedup, filter, convert, topics, doctor, lint, canary insert, from-traces) and for the others the same-file refusal comes first, under the same exit code. Upstream lists the spellings it refuses: the same string, ./x, sub/../x, the absolute path, a case variant on a case-insensitive file system, a hard link or a symlink, and on Windows also a trailing space or dot, ::$DATA and a junction; the check behind this page used the same string and the default output names, not a link or a Windows spelling. canary insert also refuses a --manifest that is the dataset or the --output (exit 1). The commands upstream has not checked are mix, forge, generate, gen-magpie, recipe and canary check, and soup data persona-mix still writes over its --prompts file when --output names it (it exited 0 and replaced the file here). Both are tracked in #2226. (Since closed in v0.77.2: soup data ingest refuses an --output that names its source document, and soup data persona-mix, generate, canary check, mix --optimize, forge and recipe --execute refuse an --output that names one of their inputs, all before anything is read and all with exit 1; soup adapters arithmetic and merge refuse an --output that is an input adapter with exit 1 (Output path refused: ..., #2274, #2349, #2379). The shared refusal no longer starts with Error: or Plan failed:. Here persona-mix, ingest, canary check, forge and adapters merge were run and each left its input untouched; the other commands are as the release notes list them.) The v0.77.0 advice to give --output another path is now the refusal's own message: --output 'pii.jsonl' is the same file as --input 'pii.jsonl'; choose a different --output.
+soup plan and soup apply print the same lines as soup train. The first line is Config validation error:, then one line per setting. A syntax error was 1 at v0.77.1 and is 2 since v0.77.2 (what v0.77.2 adds); a file over a read limit or a config that is not a mapping is still 2, a missing file is still 1. soup doctor --config stays 2 and soup recipes verify --config and soup ship --config stay 3 on the same config. One config loads under soup train only because of a flag: a distill config with training.minillm_enabled: true, training.minillm_teacher_mix_ratio: 0 and no training.minillm_on_policy loads with soup train --minillm-on-policy, but soup plan and soup apply have no such flag and exit 1, so write training.minillm_on_policy: true in the YAML (upstream listed this as a known limitation). (Since closed in v0.77.2: both commands take --minillm-on-policy, #2315.)
+soup adapters bisect still exits 2 for two different things. Exit 2 is BROKEN_AT, and it is also an --eval-command whose program is not on PATH, so read the first line of the output: the second prints --eval-command program 'x' was not found on PATH; install it, put it on PATH, or give its path and no verdict panel. A program given with a directory part (./tool, an absolute path) ran as given. When {ckpt} is part of the program name, the name was resolved for each probe and a miss counted as a failed probe, as before. (Since closed in v0.77.2: a program that cannot be started exits 2 with no verdict, whether it is fixed (refused before the first probe) or completed by {ckpt} (resolved for each probe, so the refusal can come after earlier probes ran); a program given with a path that is not a file, or is not executable, exits 2 with --eval-command program './x' could not start: .... A program that starts and exits non-zero, or times out, is still a failed checkpoint. On Windows the template is split without POSIX quoting, so write "{ckpt}" in double quotes, #2314, tracked as #2488. Here a missing fixed program, a name that {ckpt} completes and a ./ path that does not exist all exited 2 with no verdict.)
+Missing packages are named now, under the same code. soup adapters check, diff and scan without NumPy exit 1 with numpy package required; pip install "soup-cli[train]" (or pip install numpy); soup adapters merge and soup adapters arithmetic exit 1 with numpy and safetensors packages required; pip install "soup-cli[train]" (or pip install safetensors numpy) before they read an adapter (#2141). Through v0.77.0 check reported the missing NumPy as a corrupt weights file and diff ended in a ModuleNotFoundError traceback.
+Two options are new and add little to the codes. soup ship --progress jsonl writes JSONL events to stderr and leaves stdout and the exit codes alone: 0 for SHIP, 2 for DON'T SHIP (a completed verdict ends with an end event, not an error), 3 for a usage or input error (an error event with the fixed text execution_aborted); a value other than jsonl exits 3. In that mode an unexpected exception is exit 1 with start and error events and no traceback (read from the call site; since v0.77.2 it also prints an Error: line on stdout, and Ctrl+C is 130, see what v0.77.2 adds). soup infer --backend takes transformers or mlx; any other value is Click's 2, and --backend mlx with an option MLX generation does not take, or without the [mlx] extra, exits 1 naming it (the options).
+What v0.77.2 adds
+v0.77.2 keeps the eleven commands of v0.76.0 on one scheme and changes the ten results below, which are the rows of its release notes. Six turn a result that was empty, unfiltered or unusable, or a stored value that is not a number, into a refusal, so a CI step that passed on v0.77.1 can fail on v0.77.2; the other four replace a code that said little with one that says more.
+
+CommandConditionv0.77.1v0.77.2
+soup eval quant-checkan unparseable --tasks file1, after loading both models3, before any model loads (#2185)
+soup distill-promptno trace row has a prompt0, an empty output written3, the output untouched (#2209)
+soup data evolve, soup data gen-magpieno row was produced and at least one provider call failed0, the output emptied1, the output kept (#2348)
+soup data filter --perplexity or --score-onlytorch or transformers is not installed0, unfiltered or partial1 (#2377)
+soup data dedup --field <key>the key is absent from every row0, distinct rows dropped1 (#2336)
+soup registry push --run-idthe run is not completed0, an entry registered1 (#2248)
+soup plan, soup applymalformed YAML, or a config that cannot be read1, the raw parser or OS error2, naming the config and the YAML location (#2323)
+soup quantize --to "[/]"a value Rich read as markup12 (#2217)
+soup ship --progress jsonlCtrl+C1130 (#2417)
+soup loop statusa stored spend that is NaN or Infinity0, $nan printed2 (#2424)
+Six things the table does not say.
+The old results of rows 2 to 6 are upstream's words, not a finding of this page. The v0.77.2 notes describe the old result of soup distill-prompt with no usable prompt as "empty output written" (now exit 3 with the output untouched, #2209) and that of soup data evolve and gen-magpie when no row was produced and a provider call had failed as "output emptied" (now exit 1 with the output kept, #2348; the release notes put it as "every provider call failed", the code at the tag refuses when no row survives and at least one call failed). soup data filter --perplexity and --score-only without torch or transformers exited 0 with "unfiltered or partial" output (#2377), and soup data dedup --field <key> with a key absent from every row exited 0 with "distinct rows dropped" (#2336). soup registry push --run-id on a run that was not completed exited 0 with "an entry registered" (#2248). If a script ran one of these on v0.77.1 and kept the file, look at the file. On v0.77.2 the reason is printed, among other lines, for example --field 'x' is absent from every row; choose a field present in the dataset. and No prompts found in traces: 0 of 2 trace rows had a prompt ....
+soup plan and soup apply now exit 2 on a YAML syntax error, and every other code is as at v0.77.1. A config that is not valid YAML, or that cannot be read, prints one line naming the config (Config 'soup.yaml' is not valid YAML: mapping values are not allowed here (line 2, column 7), or Config 'soup.yaml' cannot be read: Permission denied; a file that is not valid UTF-8 prints Config 'soup.yaml' is not valid UTF-8: ... the same way) and exits 2. A missing file is still 1, a config soup train refuses is still 1 with the Config validation error: lines, and a file over a read limit or a config that is not a mapping is still 2. Both commands take --minillm-on-policy (#2315, by @Nari-Ab), so the distill config that v0.77.1 refused (training.minillm_enabled: true, training.minillm_teacher_mix_ratio: 0 and no training.minillm_on_policy) is validated and hashed like any other with soup plan --minillm-on-policy: here that plan exited 0 and the same plan without the flag exited 1. soup apply --minillm-on-policy keeps the flag in the soup train command it prints and still only records the plan.
+soup eval quant-check reads --tasks before it touches a model. Invalid JSON, a row without prompt, a name that does not end in .jsonl, an empty file and a path that cannot be opened all print Cannot load --tasks: ... and exit 3, so the exit-1 note on the quant-check row (the binary against the upstream changelog) is history now. A model that does not load is still 1 without --allow-stub.
+soup ship --progress jsonl ends in 130 on Ctrl+C. The wrapper maps the interrupt to 130 after the error event with the fixed text execution_aborted; this was read from the call site, and the release notes list it among the paths not exercised by hand. An unexpected exception in that mode is still exit 1 and now also prints Error: <ExceptionType>: <message> (control characters removed) on stdout, while stderr stays JSONL events.
+soup loop status exits 2 on a stored spend that is not a finite number. The same is true of a negative spend (here loop state invalid: state file has invalid contents: spent_this_month_usd must be >= 0). The command shows the spend and the run count that the next iteration would see (the month and day resets applied to the saved last_run_date) and writes nothing to loop.yaml (the loop).
+Other refusals under codes already in use. soup ci init --python with a version outside 3.11 to 3.13 exits 1 (python_version 3.10 is not supported by soup-cli 0.77.2 (needs Python 3.11 to 3.13); 03.11 and 3.011 are still accepted and written as typed, tracked as #2534, #2249). soup profile --model exits 1 with the reason when no config.json can be read (#2285). soup eval compare and soup eval leaderboard exit 1 for a stored score that is not finite (#2477). soup ship --adapter returns DON'T SHIP (2) with the rule adapter_noop for a local adapter directory in which every lora_B tensor is zero and every other saved tensor (a head, a bias) is zero too, before any model loads (#2434). The check reads the adapter weights with NumPy, from a directory under the current directory that is not a symlink; a Hub id, an adapter with no LoRA pairs, or one with a non-zero saved tensor goes on to the live evaluation, and if the weights cannot be read (NumPy missing, a path outside the current directory) soup ship prints a warning and runs the live evaluation as before. soup serve exits 2 for a --tool-auth-token or SOUP_TOOL_AUTH_TOKEN outside the token rule (16 to 128 characters from A-Z, a-z, 0-9, _ and -, trailing newline included), before the model loads, on every bind (#2329; the rule).
+What v0.76.1 adds: new refusals under codes that already existed
+v0.76.1 moves no exit code. It puts one loader with nesting, expansion and size limits in front of every YAML file Soup reads (the limits), so a file that loaded on v0.76.0 can now be refused, with these codes:
+
+CommandA YAML file over a limitA YAML syntax error
+soup train --config1, one line naming the file1, now one line naming the file (v0.76.0 printed the parser's message)
+soup doctor --config2, the same line, then Config could not be loaded (see above).2, the same
+soup plan, soup apply2 (through v0.76.0 the file was read, and plan wrote a plan for it)1 through v0.77.1, 2 since v0.77.2 (#2323)
+soup eval gate --suite33 (through v0.77.0: 1)
+soup train --gate1, Invalid --gate suite: ...1
+soup ship --config3 (its size cap is 4 MiB)3
+soup adapters audit --config11
+Three rules that hold for every command
+0 is success. --help exits 0.
+Click rejects a bad invocation with exit 2 before the command's own code runs, except on the eleven commands in the scheme, where it is 3. That covers an unknown command or flag, a missing required option, and a value that fails Click's own type check. soup ship --bogus and soup ship --forgetting-threshold abc exit 3 at v0.76.0; soup diagnose --bogus, soup data doctor --bogus, soup eval unlearning --bogus, soup adapters ..., soup lock write, soup lock show and soup train --bogus still exit 2.
+An unexpected exception prints a short error and exits 1, and Ctrl+C exits 130. soup --verbose <command> shows the traceback. (A malformed YAML suite passed to soup eval gate was the example through v0.77.0, when it stayed 1 rather than 3; since v0.77.1 it exits 3 with a message naming the file.) soup train installs no Ctrl+C handler of its own at v0.77.0, so interrupting a local run is an ordinary 130 (a --cloud runpod --cloud-submit run instead keeps waiting for the controller to delete the Pod and exits with its code), see Observability.
+Where one code means two things
+soup diagnose: exit 2 is a MAJOR verdict, and it is also a missing --evidence file, an invalid --citation-style and a mistyped flag. Exit 3 is the new NOT_RUN verdict, and it is also --attach-to-registry without --output and a bad --tokenizer.
+soup data doctor, soup eval unlearning and soup probe: exit 2 is a MAJOR verdict, and each of them also uses 2 for rejected inputs and for a mistyped flag (preference data handed to soup data doctor, a missing --evidence file).
+soup shrink, soup reward stress, soup draft measure, soup adapters check, soup adapters audit: exit 2 is the verdict (DON'T SHIP, gameable, below the floor, inactive, diverged) and also what Click returns for a mistyped flag.
+soup adapters scan: exit 1 is a WARN verdict and also an adapter that is missing or unreadable.
+soup adapters verify and soup adapters check-safetensors: a failed check is 1 by default and 3 with --strict. Both also exit 3, with or without --strict, when the directory is outside the working directory or is a symlink, and soup adapters verify exits 3 on a .soup-signature.json that cannot be parsed.
+soup adapters bisect: exit 2 is BROKEN_AT and also a rejected argument, and, since v0.77.1 for a fixed program and since v0.77.2 for any program (one that {ckpt} completes included), an --eval-command program that is not on PATH or cannot be started; the first line of the output says which.
+soup adapters merge: exit 2 is a rejected argument and, with --strict-verdict, a MAJOR canary verdict; exit 3 is a refused gate, not a verdict.
+soup attest verify: exit 3 is an invalid signature or a policy mismatch, 2 is an input that cannot be read, and 1 is a Sigstore verifier that is not available.
+soup env check: exit 3 is ABI drift against the lock and also an installed package outside the bounds Soup declares for itself.
+soup train: exit 2 can arrive after a finished run, and so can exit 3 (--diagnose-gate); a run that a gate stopped early exits 0. See the train rows below.
+Release and quality gates
+Ship and the eval commands
+
+CommandCodeMeans
+soup ship0SHIP.
+soup ship2DON'T SHIP: the task leg or the forgetting leg said no, or no general benchmark was measured at all (evidence with no benchmarks and no baseline: "cannot verify the model didn't regress"). Since v0.77.2 also a local --adapter directory in which every lora_B tensor is zero and every other saved tensor (a head, a bias) is zero too, with the rule adapter_noop, decided before either model loads (#2434; the conditions).
+soup ship3A usage or input error: no mode chosen, --base without --tuned or --adapter, --noise-floor outside 2 to 10 or together with --evidence, --forgetting-threshold outside 0 to 1, an unreadable --config (one over 4 MiB or, since v0.76.1, nested deeper than 100 levels or expanding past its alias allowance), a refused --judge-model, any Click error (an unknown flag, a malformed number), and offline evidence that is missing, is not JSON, has a malformed score block or a malformed numerics stamp, carries a field this release does not recognise, or whose provenance or numerics family does not match the committed --config. Since v0.77.0 also --require-provenance without --evidence, --config and a local --adapter, or against evidence with no binding or with one that no longer matches (stale provenance: artifact, task, training source, suites or policy differs); a --data-sha256 that is not 64 lowercase hex characters; and a --chat-template-kwargs value that is not a JSON object, names a key Soup sets itself, or is given with --evidence. Since v0.77.1 also a --progress value other than jsonl (Error: --progress must be jsonl, no events).
+soup ship1A runtime error: a model that fails to load, an unwritable --output, or a judge that cannot be reached (a runtime error, not a verdict). With --progress jsonl (v0.77.1) also an unexpected exception, which prints start and error events on stderr and no traceback and, since v0.77.2, an Error: <ExceptionType>: <message> line on stdout. Ctrl+C in that mode was 1 at v0.77.1 and is 130 since v0.77.2 (#2417, read from the call site; upstream did not exercise it by hand). 0, 2 and 3 are unchanged, and a completed DON'T SHIP still ends with an end event.
+soup eval gate0Every task passed. Without --model the run uses a stub generator that returns empty text, so it checks the wiring and not a model. Since v0.77.0 a suite with no tasks is refused with exit 3 (see the 3 row); through v0.76.1 an empty suite, or one whose tasks key was misspelled, passed with exit 0.
+soup eval gate2A task scored below its threshold, a task that could not be scored (its row reads ERROR, for example an unreadable task file), or a score that fell further than --regression-threshold below the --baseline. Since v0.77.0 that includes a judge task whose prompts file is empty: it fails even at threshold 0.
+soup eval gate3Setup you can fix: a --suite that is missing, outside the working directory, fails the schema (it needs a top-level suite: name) or, since v0.76.1, is over 1 MiB, nested deeper than 100 levels or expanding past its alias allowance; a --baseline that is missing or not valid JSON, --regression-threshold outside 0.0 to 1.0, --write-baseline without --model, a judge URL the load refuses, or a Click error. Since v0.77.0 also a suite with no tasks (field 'tasks' must contain at least one task) or with a repeated task name, and a baseline score that is not a finite number (NaN, Infinity, an overflow such as 1e999, an integer too large for a float), each refused before any task runs. Through v0.76.1 a NaN or -1e999 baseline printed GATE PASSED. Since v0.77.1 also a suite that is not valid YAML or whose top level is not a mapping (Cannot load suite: eval-gate suite 'x.yaml' is not valid YAML: ..., or ... must be a mapping with 'suite' and 'tasks', got a list); through v0.77.0 those exited 1 with a bare Error: ParserError or Error: TypeError line (#1895).
+soup eval gate1--model fails to load, an unwritable --write-baseline, or an unhandled error.
+soup eval against0No regression on the metric.
+soup eval against2A regression.
+soup eval against3Input you can fix: a --metric outside the allowed list, a locked --suite that is missing, outside the working directory or invalid, no recorded series for one or both runs, or a Click error.
+soup eval against1The experiment tracker cannot return a per-row series.
+soup eval quant-check0OK or MINOR on every task, or a run with --allow-stub: the table is then titled as a stub and --format json carries "stub": true, and it measures nothing.
+soup eval quant-check2At least one task is MAJOR.
+soup eval quant-check3An unknown --format; a --before, --after or --tasks path that is missing, outside the working directory or an unresolvable registry reference, or (since v0.77.0) a registry reference that matches more than one entry; a standalone .gguf file; or a Click error. Since v0.77.2 also a --tasks file that cannot be loaded (invalid JSON, a row without prompt, a name that does not end in .jsonl, no tasks, a path that cannot be opened), reported as Cannot load --tasks: ... before either model loads (#2185).
+soup eval quant-check1A model that fails to load (without --allow-stub), naming the side, or an unexpected error. (A --tasks file that is not valid JSONL exited 1 after both models had loaded at v0.76.0 to v0.77.1, although the upstream changelog said 3; since v0.77.2 the binary says 3 too, see the 3 row.)
+soup eval unlearning0Overall OK or MINOR. Without --evidence every metric is scored a neutral OK and the command exits 0.
+soup eval unlearning2Overall MAJOR, or a rejected input, including --attach-to-registry without --output.
+soup eval unlearning1--attach-to-registry failed after the report was written.
+soup eval behavior0Overall OK or MINOR.
+soup eval behavior2Overall MAJOR.
+soup eval behavior3No --evidence and no --base-model (--evidence is required when --base-model is not supplied), an invalid battery or run id, unreadable or malformed evidence, elephant or syceval together with --base-model, or a Click error.
+soup eval behavior1The live pre or post generation run failed.
+soup eval checklist0Overall OK or MINOR.
+soup eval checklist2Overall MAJOR.
+soup eval checklist3--evidence omitted (it is required), a spec that is missing, empty or invalid, evidence that cannot be read, or a Click error.
+soup diagnose0Overall OK or MINOR. The worst mode decides: a score of 0.85 or above is OK, 0.60 or above is MINOR, anything lower is MAJOR. Without --base-model or --evidence every mode is scored a neutral OK (probe not run (no evidence)) and the command exits 0, so a pipeline has to pass one of them. Also an overall NOT_RUN when --allow-not-run is given.
+soup diagnose2Overall MAJOR (it wins over NOT_RUN). Also an --evidence file that does not exist, an invalid --citation-style and a Click error.
+soup diagnose3Overall NOT_RUN: a probe you asked for produced no measurement, and --allow-not-run was not given. Also --attach-to-registry without --output and a bad --tokenizer.
+soup diagnose1An --evidence file that is not valid JSON, a live run that failed, an unwritable --output, or an --attach-to-registry that failed after the report was written.
+soup eval capability and soup eval citation return no verdict code. A failed --push PR comment on soup ship prints a warning and leaves the verdict's exit code alone.
+Several of these commands score only what you give them, and a missing input is a pass. soup diagnose, soup eval unlearning, soup probe sleeper, soup probe truth and soup probe harm exit 0 when run with no evidence (and, for soup diagnose, no --base-model): they print a neutral OK report and score nothing. The three probes also write that neutral report, with 0 tokens and verdict OK, if you pass -o. Give --weights without --evidence and they exit 2 instead. A CI step that drops the flag stays green. soup eval behavior and soup eval checklist stopped scoring a missing --evidence as a pass in v0.76.0: with no evidence flag they exit 3. soup eval checklist still scores any test whose name is missing from the evidence file as a neutral OK (0 of 0), so an evidence file that omits tests, an empty {} included, exits 0 with Overall: OK.
+Data
+
+CommandCodeMeans
+soup data validate0At least one row is usable and any --min-valid-fraction is met. Issues on some rows do not fail the run when no minimum is given, and since v0.76.1 that includes the preference rows the loader now drops because they cannot be written in one layout. An empty file also exits 0 when --format is given explicitly (it reports 0/0 rows valid); without --format it exits 3. Since v0.77.0 a line that is not valid JSON or not a JSON object counts as an invalid row; before, it was skipped uncounted or, for a non-object, crashed the command with exit 1.
+soup data validate2No usable rows (since v0.77.0 that includes a file of only non-object or invalid-JSON lines with --format given), or the valid fraction is below --min-valid-fraction.
+soup data validate3A missing file, an unknown --format, a format that cannot be detected (an empty file without --format among them, and since v0.77.0 a file whose lines are all unusable: no object rows remain: N row(s) skipped), --min-valid-fraction outside 0 to 1, or a Click error.
+soup data validate1A file with an unsupported extension, or a directory.
+soup data doctor0Overall OK or MINOR.
+soup data doctor2Overall MAJOR, or data of the wrong kind: preference data (use soup data lint), or RAFT data without --show-mask. Also a Click error.
+soup data doctor3--mask-history together with --no-train-on-responses-only or --train-on-messages-with-train-field.
+soup data doctor1A missing path, an empty dataset, rows whose format cannot be detected, a tokenizer that fails to load, an unwritable --output, or (since v0.77.1) an --output that is the same file as the dataset.
+soup data lint0Overall OK or MINOR.
+soup data lint2Overall MAJOR.
+soup data lint1A format that cannot be auto-detected (soup data validate gives 3 for the same file).
+soup data lint3A missing path, an empty dataset, data that is not preference data (use soup data doctor), --sample above 50,000, an unwritable --output, since v0.77.1 an --output that is the same file as the input (--output 'x.jsonl' is the same file as the input 'x.jsonl'; choose a different --output, which v0.77.1 printed after an Error:  prefix), or a Click error.
+soup data canary check0OK or MINOR.
+soup data canary check2MAJOR: a canary was memorized.
+soup data canary check1A runtime error: manifest unreadable, model load failed, or the [train] extra is missing. Since v0.77.2 also an --output that is the same file as --manifest (--output 'x' is the same file as --manifest 'x'; choose a different --output), refused before anything is read.
+soup data brain-rot0Always, unless --strict is set.
+soup data brain-rot3With --strict, the fraction of MAJOR rows exceeds --max-major-fraction.
+soup data brain-rot2A rejected input.
+soup expect0Every expectation passed.
+soup expect2At least one expectation failed. That includes expect_chosen_preferred_over_rejected_by_judge with no judge configured, unless the expectation carries args: {advisory: true}.
+soup expect3The suite or the data was rejected: a missing or invalid suite (an unknown top-level key, an unknown argument, a key beside name), a missing dataset, a path outside the working directory, a line that is not valid JSON or not an object, a file with no checkable rows, or a Click error.
+soup expect1The --judge endpoint could not be reached.
+soup data decontaminate, soup data toxicity, soup data langdetect, soup data pii, soup data educational and soup data score filter or score a file and write the result. They exit 0 whatever they find, with three exceptions: soup data score -b <label> without --benchmark-file exits 1 (since v0.76.0); since v0.77.0 an input with no extractable text in any row, an empty input included, or a --benchmark-file with none, exits 1 with no extractable text in N input rows (or benchmark rows) before anything is reported or written; and since v0.77.1 an --output that is the same file as --input (decontaminate: or as --benchmark-file), the default output names pii.jsonl, toxicity.jsonl, langdetect.jsonl, educational.jsonl and clean.jsonl included, exits 1 with --output 'x' is the same file as --input 'x'; choose a different --output before the data is read. Through v0.77.0 an input with one of those names was replaced. Since v0.77.0 these commands also read alpaca, preference, KTO and ShareGPT rows, which they used to scan as empty. soup data clean exits 0 whenever it ran, even when it dropped rows.
+Models, adapters and supply chain
+
+CommandCodeMeans
+soup adapters scan0OK.
+soup adapters scan1WARN, or the adapter is missing or unreadable.
+soup adapters scan3FAIL: the spectral scan found a likely backdoor pattern (rank-1 dominance, energy concentration, NaN or Inf, norm outliers).
+soup adapters scan2An unknown --format, or an adapter path outside the working directory.
+soup adapters verify0A signature record is present and the files match it. An unsigned record is a hash manifest with no signer; an ed25519 record is checked against its own embedded key unless --public-key is given; a Sigstore record needs --cert-identity and --cert-oidc-issuer.
+soup adapters verify1The signature is absent or does not match, the directory is missing, a Sigstore record is given without both --cert-identity and --cert-oidc-issuer, or the Sigstore verifier is unavailable (it is reported as a failed verification here, unlike soup attest verify).
+soup adapters verify3The same failure as 1, with --strict. Also without --strict: a directory outside the working directory or a symlink, or a signature file that cannot be parsed.
+soup adapters check-safetensors0Every weight file is safetensors.
+soup adapters check-safetensors1A pickle or PyTorch-classic weight file was found, or the directory is missing.
+soup adapters check-safetensors3The same finding as 1, with --strict (a missing directory stays 1). Also without --strict: a directory outside the working directory or a symlink.
+soup adapters sign0Signed.
+soup adapters sign1The adapter directory does not exist, or a Sigstore signing request failed at run time (the trust root, the OIDC provider, Fulcio or Rekor could not be reached, for example).
+soup adapters sign2--backend sigstore without the [sigstore] extra (nothing is signed), or with no ambient OIDC credential and without --interactive-oidc when the Sigstore trust root can be loaded (if it cannot, for example offline, the run exits 1 first: see the 1 row); an unknown --backend; or another rejected argument.
+soup adapters check0alive: the adapter moved from its initial state.
+soup adapters check2inactive, with the reason. Also a Click error.
+soup adapters check1The path is refused or missing, or the adapter's weights cannot be read. Since v0.77.0 the safetensors package is not needed, but NumPy is, and without it the error is numpy package required; pip install "soup-cli[train]" (or pip install numpy) since v0.77.1 (at v0.77.0 it read as a corrupt file: Corrupt or unreadable safetensors weights ... No module named 'numpy'); a tensor dtype NumPy cannot hold, such as FP8, is refused. A bfloat16 adapter, which exited 1 through v0.76.1, gets a verdict.
+soup adapters audit0The recorded settings agree with the config. Settings the record cannot speak to are reported unknown and still exit 0.
+soup adapters audit2At least one setting DIVERGED. A forgotten --config is a Click error, which is also 2.
+soup adapters audit1The adapter path, the config or the recorded settings cannot be read. Since v0.76.1 that includes a --config over 1 MiB, nested deeper than 100 levels or expanding past its alias allowance, which v0.76.0 read and compared.
+soup adapters merge0Merged.
+soup adapters merge3Refused by a gate: the spectral scan failed or could not run on an input (--allow-unscanned skips it), or the licenses conflict (--license-override with a reason of at least 8 characters proceeds and is recorded to the audit log).
+soup adapters merge2Rejected arguments: an unknown --strategy, fewer than two adapters, a --license count that does not match the adapters, --strategy cmaes without --eval (or with --canary or --strict-verdict), or a --canary file that cannot be read or scored. Also a MAJOR canary verdict when --strict-verdict is given: the merged adapter is already written when it exits. And, since v0.77.0, a --strategy cmaes search in which every evaluation failed: nothing is written (through v0.76.1 it wrote a merge of the first sampled weighting and reported it converged).
+soup adapters merge1Since v0.77.1, NumPy or the safetensors package is missing: numpy and safetensors packages required; pip install "soup-cli[train]" (or pip install safetensors numpy), checked before any adapter is read. Since v0.77.2 also an --output that is one of the input adapters (Output path refused: --output 'x' is the same file as adapter 'x'; choose a different --output, #2349, #2379).
+soup adapters arithmetic1The same two packages are missing (v0.77.1); the message is the same as for merge. Since v0.77.2 also an --output that is a referenced adapter, refused before any adapter is read (#2274, #2349, #2379).
+soup adapters bisect0ALL_OK: the endpoints both pass.
+soup adapters bisect2BROKEN_AT, or rejected arguments. The --eval-command is judged by its own exit code: 0 passes a checkpoint and anything else fails it. A mistake in that command's own arguments (a usage error is 3 for soup eval gate) reads as a failed checkpoint, so run the command once by hand first. Since v0.77.1 it is also a fixed --eval-command program that is not in an absolute PATH directory: that is refused here, before the first probe, with --eval-command program 'x' was not found on PATH; install it, put it on PATH, or give its path and no verdict, so exit 2 alone does not tell BROKEN_AT from a rejected command: read the first line. Through v0.77.0 that case ran one probe and reported BROKEN_AT on the first checkpoint. Since v0.77.2 the refusal, with no verdict, also covers a program that {ckpt} completes (resolved for each probe, so it can come after earlier probes ran) and a program given with a path that is not an executable file (--eval-command program './x' could not start: ...); through v0.77.1 a completed name that was not found counted as a failed probe.
+soup probe sleeper2A MAJOR verdict, or a rejected input. The same holds for soup probe truth and soup probe harm.
+soup probe interference2The worst pair scores 0.20 or more in absolute value, or a rejected input.
+soup shrink0SHIP: perplexity regression within --tolerance. Also --plan-only.
+soup shrink2DON'T SHIP: perplexity regression above --tolerance.
+soup shrink1Anything else that fails once the command is running: an unreadable --calib, a model that fails to load, a bad value that Click does not check. A mistyped flag or a missing required option is Click's 2, the same number as DON'T SHIP.
+soup draft measure0The report was produced. Without --min-acceptance no acceptance rate fails the run.
+soup draft measure2--min-acceptance was given and the measured acceptance rate is below it. Also a Click error.
+soup draft measure1An error: unreadable prompts, a bad --sweep-k, a model pair that fails to load, or a target that generated no tokens.
+soup reward synth0A verifier was emitted, or --plan-only printed the plan.
+soup reward synth2Refused: the verifier could not tell the references from perturbed negatives. Nothing is left at -o.
+soup reward synth1Usage or runtime error: no -o, an existing output without --force, an output that is not a .py file.
+soup reward stress0Robust: the junk completions stayed under --max-gameable.
+soup reward stress2Gameable. Also a Click error.
+soup reward stress1Usage or runtime error: the target was not found or could not be loaded, a bad --attacks list.
+soup recipes verify0Every config that could be checked attaches. That can mean everything was unverified, so read the report.
+soup recipes verify2A config cannot attach.
+soup recipes verify3A --config that is missing, unparseable or refused by the loader (Config does not parse: ..., a staged field included), or a Click error.
+soup recipes verify1torch, transformers or peft is missing or fails to import, or a crash. Since v0.77.0 the --config is read first, so a missing or unparseable config exits 3 even on an install without torch (through v0.76.1 this 1 hid it).
+Provenance, locks and plans
+
+CommandCodeMeans
+soup attest emit0Statement printed or written. --sign sigstore signs it with a Sigstore bundle; without the extra it does not fall back to an unsigned statement, see the 2 row.
+soup attest emit2Rejected input: an invalid stage or SHA, a signing failure (ed25519 without a usable key), --sign sigstore without the [sigstore] extra, without --output, with --key, or with no ambient credential and no --interactive-oidc when the Sigstore trust root can be loaded (nothing is written; if the trust root cannot be loaded, for example offline, the run exits 1 instead), a write failure, or --attach-to-registry without --output.
+soup attest emit1--attach-to-registry failed after the statement was written, or a Sigstore signing request failed at run time, which includes a trust root that cannot be loaded (for example offline) even when no credential is present either. An explicit signing request never degrades to an unsigned statement.
+soup attest verify0The signature is valid: an ed25519 signature against the key embedded in the sidecar, or a Sigstore bundle against the --cert-identity and --cert-oidc-issuer you supplied. That shows the statement matches its sidecar, not who signed it: for ed25519 pass --public-key trusted.pem to require a specific signer. The subject digest is asserted by the signer and is not re-checked against an artifact.
+soup attest verify3Invalid: a tampered statement or wrong key, an unsigned sidecar, no public key to verify with, an embedded key that does not match --public-key, a Sigstore sidecar with no bundle or without both --cert-identity and --cert-oidc-issuer.
+soup attest verify2An input that cannot be read, a path outside the working directory, one of --cert-identity and --cert-oidc-issuer without the other, or --public-key with a Sigstore sidecar.
+soup attest verify1The Sigstore verifier is unavailable (for example its trust root cannot be fetched), which is reported as an outage and not as tampering.
+soup bom emit0BOM printed or written.
+soup bom emit2Rejected input: an unsupported --format, a SHA that is not 64 hex characters, a bad --energy file, or --attach-to-registry without --output.
+soup bom emit1--attach-to-registry failed after the BOM was written.
+soup lock check0The closure matches.
+soup lock check2Drift.
+soup lock check3The lock file is missing or unreadable, a SHA is malformed, or a Click error.
+soup lock show3The lock file is missing. A mistyped flag is Click's 2.
+soup lock write2Unchanged from v0.75.2: no --env-hash and no soup-env.lock, a SHA that is not 64 hex characters, or a Click error.
+soup env check0No drift and every installed package is inside the bounds Soup declares.
+soup env check3ABI drift against the lock, or a package outside the declared bounds. The bounds check needs no lock file and comes first.
+soup env check1There is no lock file.
+soup env check2The lock file is unreadable.
+soup plan0The plan was written to soup.tfstate. Since v0.77.1 soup plan runs the same load checks as soup train, so a config that soup train refuses is exit 1 and no plan (at v0.77.0 it wrote one and exited 0; see the 1 row).
+soup plan1The config file was not found, or is refused the way soup train refuses it (since v0.77.1, #2242): an unknown key (unknown config key 'x' - refused.), a staged field set away from its default, a refused deprecated value or any other schema error, printed as Config validation error: and one line per setting. No plan is written and an existing state file is not changed.
+soup plan2The config or the state was rejected: for example a config that is not a mapping or, since v0.76.1, one over 1 MiB, nested deeper than 100 levels or expanding past its alias allowance (config 'soup.yaml' is larger than 1048576 bytes; refusing; through v0.76.0 such a file was read and the plan written). Since v0.77.2 also a YAML syntax error or a config that cannot be read, each reported in one line that names the config (Config 'soup.yaml' is not valid YAML: ... (line 2, column 7), Config 'soup.yaml' cannot be read: ...); through v0.77.1 those exited 1 with the parser's or the operating system's own message.
+soup apply0No drift. --dry-run stops there. Without it the state is marked applied and the soup train command is printed: soup apply does not start training.
+soup apply3The config has drifted from the plan.
+soup apply1The config or the state file does not exist, or the config is refused the way soup train refuses it (since v0.77.1: an unknown key, a staged field, a refused deprecated value or any other schema error, --dry-run included). The state file is left as it was and is not marked applied.
+soup apply2The config or the state was rejected: for example a config that is not a mapping or, since v0.76.1, one over a YAML read limit. Since v0.77.2 also a YAML syntax error or a config that cannot be read, reported in one line that names the config (through v0.77.1 those exited 1). --minillm-on-policy is accepted by both commands since v0.77.2.
+soup license-advisor0Advice printed. A warn-level risk does not fail the run.
+soup license-advisor3--license was given and its risk for the --target is at block severity.
+soup license-advisor2An unknown --target.
+soup drift-alarm0The KL divergence is within --threshold. A row without a string output, response or text field is skipped, so check n_reference and n_live in the output.
+soup drift-alarm3Drift. Any Slack or Discord webhook is posted first.
+soup drift-alarm1A missing file, a path outside the working directory, or, since v0.77.0, a --reference or --live file with no readable row (has 0 readable rows: ... Nothing was compared, so no drift verdict is possible.). Through v0.76.1 that last case printed an OK panel with KL 0 and exited 0.
+soup drift-alarm2A --threshold that is not above zero or is above 100, or a webhook URL that is refused.
+soup apple-adapter0Converted, or --plan-only.
+soup apple-adapter2Rejected input or a missing source.
+soup apple-adapter3The conversion is gated upstream and was refused.
+soup apple-adapter1A dependency is missing.
+Commands that start something
+
+CommandCodeMeans
+soup train0Training finished and the adapter is saved. Also --dry-run on a valid config, and --cloud without --cloud-submit (it prints a plan and starts nothing). A run stopped early by --gate or training.eval_gate with on_regression: stop, by the loss watchdog, or by a reward-hack or echo-trap halt also exits 0: soup train does not turn the stop into a failure, so check the run's output and metrics.
+soup train1The config is missing, unreadable, not valid YAML, over a read limit (since v0.76.1: larger than 1 MiB, nested deeper than 100 levels or expanding past its alias allowance, each reported in one line naming the file) or invalid (an unknown key is refused, and since v0.77.0 so is a staged field set away from its default, data.remove_unused_columns: true or a quantization the task never applies: Config validation error: with one line per setting), the hardware-fit gate refuses the run (--allow-oom-attempt overrides it), a --gate suite cannot be loaded, a --replay file does not exist, a data.chat_template that is not registered or a dataset that loads zero training rows (both also under --dry-run; since v0.76.1 the second includes a preference dataset none of whose rows can be written in one layout, and since v0.77.0 a preference task whose rows lack prompt, chosen or rejected, which v0.76.1 passed under --dry-run), a --gate suite with no tasks or a repeated task name (since v0.77.0), a reward_fn: judge_rank run that could make more judge calls than training.grpo_judge_max_calls and a Sesame CSM dataset row that is not one clip with one transcript message (both since v0.77.0, checked after the data loads and before the model does, --dry-run included), --find-lr that cannot run its sweep (no report is written), --resume or --hf-resume together with relora_steps or on task: unlearn, a --diagnose-gate evidence file that cannot be read, --gpus above 1 given with --no-reexec and without --dry-run (it prints the launch command and stops), or training raised an error. The SFT trainer also refuses to save the final model, and exits 1, when the last logged loss or the trainable weights are non-finite.
+soup train2A flag override that fails validation (the --replay options), an invalid tracker option, an invalid --cloud or --gpu (--cloud takes modal, lambda or, since v0.77.0, runpod), a refused cloud plan (Cloud plan failed: ..., for example a RunPod plan whose output directory already exists, or, since v0.77.1, a Lambda plan whose output directory has a path part that starts with -), or --diagnose-gate finding a MAJOR mode. The last one fires after training: the adapter is already saved and the run is recorded as finished. A mistyped flag is also 2.
+soup train3--diagnose-gate finding a mode that did not run (NOT_RUN). Like the MAJOR exit it fires after training, with the adapter already saved. Also, since v0.77.0, a standard input that is a pipe or a redirected file when neither --yes nor --dry-run is given (stdin is not a TTY, so the start-training confirmation cannot be answered. Pass --yes to start without the confirmation.), after the config is read and before the data or the model loads (a config refused at load still exits 1 first): piping y into the prompt no longer answers it, so pass --yes in scripts.
+soup trainthe submit call's codeWith --cloud modal, --cloud lambda or --cloud runpod plus --cloud-submit, the return code of the submit call (1 when the backend's submit is unavailable, for example RUNPOD_API_KEY or RUNPOD_SSH_PRIVATE_KEY unset). The RunPod controller has not been run against a real RunPod account yet (tracked as #2098).
+soup trainthe launcher's codeWith --gpus above 1 the run is handed to accelerate launch. On Linux and macOS os.execvp replaces Soup's own process, so the code is the launcher's rather than Soup's. On Windows, since v0.76.0, Soup runs the launcher as a child process, waits for it and exits with its code; Ctrl+C waits for the launcher's own shutdown. Before v0.76.0 the Windows call returned at once with exit 0 while the launcher kept running, and the launcher's code never reached the caller. A launcher that cannot be started exits 1.
+soup quickstartthe child's codeExits with the code of the soup train subprocess it starts, or 0 with --dry-run.
+soup llamathe child's codeExits with the code of the llama.cpp program it runs, 2 when that program is not found on PATH, 1 when it cannot be launched.
+soup serve2A refused option: a non-loopback --host without --tool-auth-token, since v0.77.2 a --tool-auth-token or SOUP_TOOL_AUTH_TOKEN value outside the token rule on any bind, loopback included (16 to 128 characters from A-Z, a-z, 0-9, _ and -; a trailing newline is refused; the message names the rule and never the value; v0.77.1 accepted any non-empty value), --bank, --mole or --steer with a backend other than transformers or a path outside the working directory, --kv-cache-type fp8, any --kv-cache-type with --backend vllm, sglang or mii (Use --backend transformers.), --kv-cache-type q8_0 with no quantized-cache backend installed, --auto-quant (it is unavailable), an unknown --device, or an unusable --hub.
+soup serve1Other startup failures, for example a model path that does not exist.
+soup mcp serve2A refused option combination: an unknown --transport, --host, --port or --auth-token with stdio, --allow-execute with sse or http, or an invalid --auth-token.
+soup mcp serve1The mcp SDK is not installed, or is too old for the transport.
+soup mcp runs reconcile2--expunge-launching was not passed, and no run record changed.
+soup mcp runs reconcile1A launching run whose process is still alive was refused.
+soup ui2Reserved: a non-loopback host (--public or --host) without a valid auth token. The command's own options cannot reach it, because a token is generated at startup and an invalid --auth-token exits 1 first, so soup ui --host 0.0.0.0 starts the server.
+soup ui1An invalid --auth-token, or the [ui] extra is not installed.
+soup can run1Without --yes it prints the confirmation panel, exits 1 and runs nothing. Also an unreadable can.
+soup can runthe child's codeWith --yes, the exit code of the training subprocess is passed through, then that of the deploy step when --deploy is set.
+soup doctor0Advisory findings (a missing optional extra, a torchvision mismatch, a core dependency below its floor, which since v0.76.1 includes a Typer below 0.15.4 wherever soup doctor can start: below Typer 0.12.4 no command can, and 0.12.4 to 0.15.3 start only next to Click 8.1 or older) and settings your config writes that its backend never reads do not change the exit code.
+soup doctor1A required core dependency is missing or incompatible, or an installed package, in an extra group included, is beyond the ceiling Soup declares for it. A missing or outdated [train] member stays advisory.
+soup doctor2--config named a file that is missing, unparseable, over a YAML read limit (since v0.76.1) or fails the schema (every load refusal, an unknown key among them). It is reported after the system, GPU and dependency tables and any environment issues. Since v0.77.0 a config that cannot be loaded stops the command before All checks passed! is printed (#2106); through v0.76.1 that line could print above the refusal. Since v0.77.0 the refusals include a staged field set away from its default and a deprecated value, which v0.76 only warned about. Unknown keys are reported together, but a cross-field refusal is reported one at a time (the first it hits), so fix it and run the command again until it prints no error.
+Other commands that return a verdict code
+
+CommandCodeMeans
+soup ab0Any decision, reject_h0 with direction worse included. Read direction to gate on a regression.
+soup ab1An input file that is not found or is outside the working directory, or a column whose values overflow.
+soup ab2An invalid metric, alpha, effect size or webhook URL, --beta given at all (refused since v0.77.0, before the input is read), or a Click error.
+soup rewind0The analysis was printed, including a run with no spikes.
+soup rewind1No such run, no log, an empty or unreadable log, a --step that was not recorded, or a failed JSON write.
+soup rewind2An invalid --json path, or a Click error.
+soup bench train0A valid report.
+soup bench train1The model was not training (no trainable parameters, a zero or non-finite gradient norm, parameters unchanged, fewer steps than asked): the report is written but marked not valid. Also a config that is missing, invalid or not supported by the bench, --steps not above --warmup, or a report that cannot be written.
+soup bench train2An --output path that is refused (checked before the config is read), or a Click error.
+soup plugins install2Always: Soup does not install plugins. Install a trusted distribution that exposes the soup_cli.plugins entry-point group, then run soup plugins enable <name>.
+Commands with no verdict code of their own
+Besides Click's exit 2 for a bad invocation, these exit only 0 or 1 (two exceptions: since v0.77.0 soup recipes use on a recipe the catalog marks unavailable exits 3, and since v0.77.2 soup distill-prompt with no prompt in any trace exits 3): the exit-code lines that v0.76.0 added to them are all 1, and none adds another code.
+soup init, soup cost, soup card, soup diff, soup history, soup why, soup profile (1 also, since v0.77.1, when batch_size, max_length or the model's size is outside the range the estimate supports: Cannot estimate this run: ...; since v0.77.2 also soup profile --model when no config.json can be read for the model, with the reason), soup sweep (1 also when every arm failed, or when a --param sets a staged field away from its default, since v0.77.0), soup autopilot, soup ci init
+soup advise (run, explain and compare), soup recipes (other than verify; since v0.77.0 soup recipes use exits 3 for a recipe the catalog marks unavailable, kimi-k2-sft and kimi-k2-thinking-grpo, and 1 for an unknown name), soup registry (since v0.77.0 a name:tag that matches more than one entry exits 1 and lists the candidate ids; push --data and --idempotency-key refusals are 1 too, and since v0.77.2 so is push --run-id on a run whose status is not completed: run X has status 'failed'; only a completed run can be registered)
+soup eval benchmark (1 when nothing was measured or saved), soup eval custom, soup eval judge (1 also when the judge stops answering: three requests in a row with their retries spent end the run, print the judge URL and how many items were not judged, and the scores from before the outage are shown but not saved), soup eval auto (1 also when every leg was skipped, since v0.77.0), soup eval compare and soup eval leaderboard (1 also, since v0.77.2, when a stored score is NaN or infinite, #2477), soup eval human, soup eval aider
+soup data inspect, convert, merge, dedup, filter, stats, sample, split, search, preview, from-traces, review, ingest, preprocess, generate, topics and clean. Since v0.76.0 soup data from-traces --judge against a judge that is down exits 1 and writes nothing (it used to write an empty file and exit 0), and a provider-backed soup data forge, augment or distill-prompt run in which every call failed exits 1 and writes nothing. Since v0.77.0 soup data clean, inspect and stats skip a row that is not a JSON object with a warning instead of exiting 1, and soup ingest exits 1 when --output is the --logs file or a hard link to it. Since v0.77.1 convert, merge, dedup, filter, sample, topics and from-traces also refuse an --output that is the same file as an input, before the data is read, with exit 1; the other eleven of upstream's eighteen are in the Data table and in what v0.77.1 adds. Since v0.77.2 soup data evolve and gen-magpie exit 1 and keep the output when no row was produced and a provider call failed, soup data filter --perplexity and --score-only exit 1 without torch or transformers, soup data dedup --field <key> exits 1 when the key is absent from every row, and ingest, persona-mix, generate, canary check, mix --optimize, forge and recipe --execute refuse an --output that names one of their inputs, all with exit 1 (what v0.77.2 adds); soup distill-prompt exits 3 when no trace row has a prompt and leaves the output as it was.
+soup runs show, compare, replay and delete
+soup can pack, inspect, verify, publish and fork
+soup deploy ollama, soup deploy hf-space, soup agent synth, soup agent eval
+soup eval custom never exits non-zero on a low score, so it cannot act as a checkpoint test for soup adapters bisect on its own. Several validating commands outside the tables above, among them soup export, soup merge, soup quantize, soup push, soup infer, soup fetch, soup ingest, soup tunability, soup spectrum scan, soup compile, soup data recipe, soup deploy autopilot and soup loop, use 1 or 2 for a rejected argument and have no verdict. For example soup export exits 1 for an unknown or removed --format (--format awq and gptq since v0.77.0) and 2 for a removed flag such as --bits, soup quantize --to awq or gptq exits 2, and soup loop watch --detach checks --poll-interval and --max-iterations in the parent since v0.77.0 and exits 2 without spawning a child; since v0.77.2 soup loop status exits 2 with loop state invalid: when the stored monthly spend is not a finite, non-negative number, and soup quantize --to with a value outside gguf, onnx and tensorrt exits 2 whatever the value looks like. Since v0.77.1 soup infer --backend takes transformers or mlx (anything else is Click's 2), and --backend mlx with a --task other than text, a --batch-size above 1, --cuda-graphs, any --device, a --hub other than hf, a negative or non-finite --temperature, or without the [mlx] extra exits 1 with a message naming that option.PreviousCLI ReferenceNextSettings refused at load
+
+Soup is free and Apache-2.0. If it saved you a training run, starring the repo costs nothing and helps most. You can also fund the GPU time behind the work a 4 GB laptop cannot reach.
+
+On this page
+The scheme the gate commands share
+What moved in v0.76.0, and the CI step that now passes silently
+What v0.77.0 adds
+What v0.77.1 adds
+What v0.77.2 adds
+What v0.76.1 adds: new refusals under codes that already existed
+Three rules that hold for every command
+Where one code means two things
+Release and quality gates
+Ship and the eval commands
+Data
+Models, adapters and supply chain
+Provenance, locks and plans
+Commands that start something
+Other commands that return a verdict code
+Commands with no verdict code of their own
+
+
+Soup
+Fine-tune LLMs in one command.
+$pip install "soup-cli[train]"
+Copy
+
+Contact
+[CONTACT REDACTED]
+[CONTACT REDACTED]
+
+Product
+Getting Started
+Training
+CLI Reference
+
+Resources
+Documentation
+About
+Stats
+PyPI
+GitHub
+Paper (DOI)
+Measurement records
+
+Community
+Issues
+Discussions
+Discord
+Telegram
+YouTube
+LinkedIn
+Twitter
+Product Hunt
+Star on GitHub
+Support Soup
+
+
+Soup is an open-source project by MePlay, Inc., a Delaware corporation.
+Built by Rafik Mamedov and Alpamys Makazhan.
+© 2026 MePlay, Inc. soup-cli is released under the Apache-2.0 License.

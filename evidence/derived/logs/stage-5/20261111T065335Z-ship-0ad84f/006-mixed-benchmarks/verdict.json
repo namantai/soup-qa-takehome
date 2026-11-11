@@ -1,0 +1,30 @@
+{
+  "decision": "DON'T SHIP",
+  "task_win": {
+    "mode": "metric",
+    "base": 0.4,
+    "tuned": 0.9,
+    "won": true
+  },
+  "benchmark_deltas": [
+    {
+      "name": "a",
+      "base": 0.8,
+      "tuned": 0.7,
+      "delta": -0.1,
+      "regressed": true
+    },
+    {
+      "name": "b",
+      "base": 0.1,
+      "tuned": 1.0,
+      "delta": 0.9,
+      "regressed": false
+    }
+  ],
+  "failed_rule": "regression",
+  "forgetting_threshold": 0.05,
+  "soup_version": "0.77.2",
+  "noise_floor": null,
+  "numerics": null
+}

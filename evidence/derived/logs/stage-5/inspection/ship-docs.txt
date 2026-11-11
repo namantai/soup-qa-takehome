@@ -1,0 +1,420 @@
+PUBLIC DERIVATIVE: visible text extracted from the original HTML snapshot; contact addresses removed.
+
+soup ship: the SHIP / DON'T-SHIP verdict · Soup CLI Docs | Soup CLI
+Skip to content
+Soup
+ZerosoonDocsPyPIGitHubDiscordSupport$pip install "soup-cli[train]"Get Started
+
+
+All docs
+/
+Getting Started
+Installation
+Configuration
+Decide
+Training Intelligencev0.25
+soup advise: pre-flight decision enginev0.54
+Pre-flight & Toolingv0.64
+Fine-tune Doctorv0.71.27
+Eval-Gated Trainingv0.26
+soup eval design: derive evals from datav0.55
+Eval Depthv0.65
+Quant-Lobotomy Checkv0.26
+soup diagnose: post-training model report cardv0.56
+Post-train X-raysv0.66
+Tracker & Eval Prov0.43
+Train
+Training Methods
+Backends & Performance
+Vision & Audio
+Autopilotv0.25
+Apple Silicon MLXv0.77.2
+Tool-Callingv0.25
+RLVR: Verifiable Rewardsv0.25
+Multi-GPU Masteryv0.27
+Speed & Memoryv0.28
+Training Stabilityv0.32
+Reproducibilityv0.73.1
+Trainer Speed & Memoryv0.35
+Multipack: FFD Bin-Packing Samplerv0.37
+LoRA Qualityv0.39
+Preference Varietyv0.40
+Optimizer Zoov0.41
+Long Contextv0.49
+GRPO Plusv0.50
+Modality IIv0.52
+Agent Forgev0.46
+Unlearning & knowledge editingv0.61
+RAG & Steeringv0.62
+Prompt Compile & Distillv0.68
+Loop Hardeningv0.70
+Reward-Hack Auto-Mitigationv0.71.26
+Lean Install + Live Wiringv0.71
+Spectrum Trainingv0.71
+LISAv0.71.34
+Model Shrinkv0.71.29
+PRM-guided GRPOv0.71.30
+Online DPOv0.71.31
+ASR (Whisper)v0.71.32
+Reward Forgev0.71.41
+Layer Streamingv0.72.2
+Streaming: Scalev0.72.3
+Streaming: Alignv0.72.4
+Streaming: Disk tierv0.76.0
+Streaming: MoEv0.77.0
+The paper
+External validation
+Measurement records
+Data
+Data Formats
+Data Tools
+Clean a datasetv0.76.0
+Data Augmentationv0.25
+Trace → Preferencev0.26
+Data Pipeline Prov0.42
+Data Forgev0.47
+Data Mixingv0.48
+Trace Ecosystemv0.63
+Data Engineering Prov0.69
+Data Moat IIv0.71.36
+Best-of-N & Evolvev0.71.31
+Ship
+Ship Verdictv0.71.25
+Inference Server
+Model Export
+Model Registryv0.26
+HuggingFace Hubv0.29
+Smart Inference Serverv0.30
+Draft & Spec Decodingv0.71.33
+Quant Menuv0.38
+Quant Menu IIv0.53
+Model Catalogv0.51
+Operate
+Experiment Tracking
+soup rewindv0.76.0
+soup benchv0.76.0
+Web UI
+Soup Cansv0.26
+Soup Cans v2 + LR Finderv0.33
+Observability & Dev UXv0.34
+Live Dashboardv0.44
+Plugin System & Ecosystemv0.45
+soup adapters: git for LoRAv0.57
+Adapter check & auditv0.76.0
+soup loop: the production data flywheelv0.58
+Adapter Lifecyclev0.67
+Adapter Algebrav0.71.34
+MCP Serverv0.71.28
+Secure & Govern
+Correctness Firstv0.36
+Governance, BOM & SLSA-3 attestationsv0.59
+Supply-chain Securityv0.60
+Compliance Packv0.71.35
+Recipes & Migration
+Recipes
+Recipe catalog
+Recipe Expansionv0.31
+Migration
+How-To Guides
+Fine-tune Llama 3.1 with LoRA
+Fine-tune Qwen 3 on a custom dataset
+Fine-tune Gemma 3 with QLoRA on a single GPU
+Export to GGUF and deploy on Ollama
+DPO training: align LLMs with human preferences
+Migrate from LLaMA-Factory to Soup CLI
+Migrate from Axolotl to Soup CLI
+Multi-GPU training with DeepSpeed ZeRO-3
+Reference
+CLI Reference
+Exit codes
+Settings refused at loadv0.77.0
+FAQ
+Env vars and files
+Contributing
+Release Notes
+What's newv0.77.2
+v0.77.2v0.77.2
+v0.77.1v0.77.1
+v0.77.0v0.77.0
+v0.76.1v0.76.1
+v0.76.0v0.76.0
+v0.75.2v0.75.2
+v0.75.1v0.75.1
+v0.75.0v0.75.0
+v0.74.0v0.74.0
+v0.73.3v0.73.3
+v0.73.2v0.73.2
+v0.73.1v0.73.1
+v0.73.0v0.73.0
+Quant Menu II live writersv0.53.1
+Modality II live trainersv0.53.2
+Plugins, Anthropic, toolsv0.53.6
+Remote data & alt hubsv0.53.8
+Live SSE & Web UIv0.53.9
+GRPO Plus + preferencev0.53.11
+
+
+soup ship: the SHIP / DON'T-SHIP verdict (v0.71.25)
+After a fine-tune there is exactly one question worth answering: did the model get better, or did I break it? soup ship answers it as a single binary verdict, SHIP or DON'T SHIP, plus a one-screen reason. It is not a dashboard to interpret, it is a decision you can gate CI on.
+The trick most pipelines miss is that a model can win the task you trained for and still be worse, because it forgot how to do everything else. soup ship fuses both checks into one rule and refuses that model.
+The decision rule
+CopySHIP  ⇔  (leg 1) task_tuned > task_base          # strict improvement
+     AND (leg 2) every benchmark: base − tuned ≤ forgetting_threshold
+else DON'T SHIP — even if the task metric looks great.
+Leg 1, task win — the metric you care about strictly improved from base to tuned. A tie is not a win.
+Leg 2, no catastrophic forgetting — no general benchmark dropped more than the forgetting threshold (default 0.05 absolute points, the same semantics as the eval-gate regression threshold).
+A missing baseline does not silently SHIP, it refuses with a clear message. When more than one rule fails the reason names the most decisive one (missing baseline → task win → regression).
+An adapter that adds nothing is refused first (v0.77.2)
+Since v0.77.2 (#2410, #2434) a live run with a local --adapter directory reads the adapter weights before it loads either model. If every lora_B tensor is zero (an untrained adapter, or the ref/ folder a DPO run leaves) and no other saved tensor is non-zero, the adapter adds nothing to the base model, and the verdict is DON'T SHIP (exit 2) with the failed rule adapter_noop: Every lora_B tensor in the adapter is zero, so it adds nothing to the base model ... No model was loaded or evaluated. The scores in that verdict are 0.0 placeholders, not measurements, so --emit-evidence prints Warning: no scores were measured; evidence not written and writes no file. This rule is decided before either model loads, so neither leg is measured.
+
+bashCopysoup ship --base HuggingFaceTB/SmolLM2-135M-Instruct --adapter ./out --task-eval tasks.jsonl
+What it does not refuse: an adapter with no lora_B keys (VeRA and other PEFT types), an adapter that saved a non-zero head or bias, a --tuned model, and an --adapter that is a Hub id rather than a local directory (skipped without a message). Weights the reader will not open (adapter_model.bin, a symlink, a path outside the working directory, a file over 2 GiB), and a machine without NumPy, print Warning: could not read the adapter weights to check for an all-zero lora_B: ... and the live run continues. The adapter_noop check runs on the live path only: --evidence decides offline without it. Before v0.77.2 such an adapter loaded both models and ended at "task did not improve", so the verdict was the same and only slower. For the same test without soup ship, see soup adapters check.
+Run it
+
+bashCopy# live: score a base model and a LoRA adapter on your task + the default suite
+soup ship \
+  --base meta-llama/Llama-3.1-8B \
+  --adapter ./output/adapter \
+  --task-eval tasks.jsonl
+
+bashCopy# judge the task win with an LLM, regress against named lm-eval suites
+soup ship \
+  --base meta-llama/Llama-3.1-8B \
+  --tuned ./my-finetuned-model \
+  --task-eval tasks.jsonl \
+  --task-mode judge_score --judge-model ollama://llama3.1 \
+  --general-suite mmlu,gsm8k \
+  --baseline registry://abc123
+
+textCopyDON'T SHIP
+Leg 1 task win (judge_score): 0.6200 -> 0.6100  [no win]
+
+Leg 2 general suite (threshold 5.00%)
+  mmlu               0.7500 -> 0.6900   -0.0600   REGRESS
+  gsm8k              0.5200 -> 0.5300   +0.0100   ok
+
+General benchmark(s) regressed past 5.00%: mmlu.
+Catastrophic forgetting: DON'T SHIP even though the task metric was ok.
+Exit codes are CI-ready: 0 = SHIP, 2 = DON'T SHIP, 3 = usage or input error and 1 = runtime error, so a misconfigured gate never masquerades as a DON'T-SHIP. Usage errors have been 3 since v0.71.38 for the mistakes Soup detects itself (a bad --general-suite); since v0.76.0 that includes a typo'd flag or a malformed number (soup ship --bogus is 3, where Click's 2 used to read as DON'T SHIP) and an evidence file that is missing, is not JSON or is malformed (it was 1). A model that fails to load, an unwritable --output and a judge that cannot be reached are 1. With --progress jsonl (v0.77.1) an unexpected exception is also exit 1, with no traceback (it prints one Error: <type>: <message> line on stdout since v0.77.2), and since v0.77.2 Ctrl+C in that mode is exit 130; 0, 2 and 3 are unchanged. The full list, with every other command, is on Exit codes.
+Decide offline, with no model load
+--evidence ev.json reaches a verdict from pre-computed scores, so CI can gate without a GPU:
+
+bashCopysoup ship --evidence ev.json --output verdict.json
+
+jsonCopy{
+  "task": { "mode": "metric", "base": 0.40, "tuned": 0.55 },
+  "benchmarks": {
+    "mini_mmlu":         { "base": 0.80, "tuned": 0.79 },
+    "mini_common_sense": { "base": 0.60, "tuned": 0.62 },
+    "mini_instruction":  { "base": 0.70, "tuned": 0.71 }
+  }
+}
+--output verdict.json also persists the machine-readable verdict from a live run.
+An evidence file is decoded by one strict reader, shared with the MCP ship_evidence tool, so the same file cannot replay to different verdicts. The allowed keys are task (mode, base, tuned), benchmarks (each with base and tuned), noise_floor (runs, floors, judge_inclusive), provenance and numerics. Anything else is refused with exit 3 (evidence has unsupported field(s): 'x') instead of ignored: until v0.76.0 an unknown key was dropped, so a misspelled noise_floors silently removed the floor. Evidence with no benchmarks is DON'T SHIP, not a pass (No general-suite benchmarks were measured), because there is nothing to show the model did not regress, whatever --baseline says: that flag is read only by a live run.
+Pairwise judge win-rate (v0.71.31)
+--task-mode pairwise decides leg 1 with a true head-to-head judge: for each prompt the judge picks base vs tuned, swap-debiased so a win only counts when both orders agree. The base is a 0.5 coin-flip, and the tuned model wins the leg only if its win-rate is above 0.5.
+
+bashCopysoup ship --base <m> --adapter ./out --task-eval tasks.jsonl \
+  --task-mode pairwise --judge-model ollama://llama3.1
+Offline, the --evidence task block takes { "mode": "pairwise", "base": 0.5, "tuned": <winrate> }.
+A judge that cannot be reached is a runtime error, not a tie (v0.76.0). Each judge request is retried twice (three attempts in all) on a 429, a 5xx or a transport error, honouring Retry-After. If the retries are spent, soup ship stops with exit 1 and live ship verdict failed: JudgeUnavailableError: judge unavailable at <url>: ..., and the message says how many pairs were left unjudged. A judge that answers "tie" still scores 0.5.
+Warning: 
+Re-run this. A soup ship --task-mode pairwise run from before v0.76.0 that happened while the judge endpoint was down or rate-limiting counted every failed call as a tie, so the win-rate read as a measured 0.5 and the command printed DON'T SHIP. That verdict was not a measurement of your model. Re-run it.
+Judge replies are read whole (v0.76.0, #1467). --task-mode judge_score asks the judge for one JSON object, {"scores": {"<criterion>": <number>}, "reasoning": "..."}. The first object with a scores key is read, criterion names match case-insensitively, and {"score": N} reads as N. A reply with no object, no finite number for a rubric criterion, or one criterion under two spellings is an error that names the criterion: soup ship stops with live ship verdict failed: ValueError: ... (exit 1) instead of scoring it at the bottom of the scale. A reply over 65,536 characters is refused unread.
+Warning: 
+Re-run this. A judge-scored verdict from before v0.76.0, from soup ship or from an eval-gate judge task, whose judge quoted a nested JSON object in its reasoning could read every criterion at the scale minimum. Re-judge it.
+The regression leg grew teeth (v0.71.38)
+Leg 2 is the moat, so it had to be trustworthy. It used to be fifteen trivia prompts scored by case-insensitive substring containment, which credited "B" for Berlin and "3" for 13, and had zero coverage of tool-calling, JSON validity or safety. v0.71.38 replaced that with an answer-extraction plus boundary-aware scorer and a bundled, offline general suite of seven hand-authored benchmarks shipped in the wheel:
+mini_mmlu · mini_common_sense · mini_instruction (expanded)
+mini_arithmetic (new)
+mini_tool_call (function-calling), mini_format_json (JSON validity), mini_safety (refusal rate) — three the old gate could not see at all
+Each suite is roughly 24 to 40 items, small enough to run offline in a blink but large enough that a single wrong answer sits well under the default 0.05 threshold and trips the gate instead of being rounded away. Everything is scored offline with Soup's own scorers: no lm-eval, no network, no download. Naming your own suites (--general-suite mmlu,gsm8k) still routes through lm-eval as an override.
+An eighth suite, and two of the seven were mis-scoring (v0.73.2)
+Giving the leg teeth was not the same as giving it eyes, and v0.73.2 found it ranking by the wrong thing in two suites and blind in one whole direction.
+mini_over_refusal joins as the eighth default suite. Leg 2 flagged a drop in refusal rate and had no reverse, so a tune that refuses everything read as a monotone safety improvement. Two models with byte-identical scores on all seven shipped suites and the same verdict, one of which refuses every benign request, were indistinguishable to it. The new suite is 40 benign requests that merely sound alarming, scored as the fraction not refused, so safety and helpfulness are two axes and neither can be gamed alone.
+mini_mmlu and mini_common_sense did not understand a boxed answer. A stub answering every item correctly scored 0.000, and Llama-3.1-8B scored 0.423, below a 0.5B, while scoring 1.000 on two other multiple-choice suites. Fixed on both halves at once (the extractor alone is worth eight items, the prompt alone worth zero): 0.423 to 0.731.
+mini_tool_call ranked by brace hygiene. The same 8B named the right tool 40 times out of 40 and scored 0.225. Now 1.000. (At v0.73.2: v0.76.0 replaced the suite's fixture, see below.)
+
+A --baseline snapshot taken before v0.73.2 is on a different scale for those three suites, and the jumps on an unchanged model are larger than the 0.05 gate. Re-take it. mini_instruction and mini_arithmetic are unaffected. Full detail on the v0.73.2 page. (That was true of v0.73.2. v0.76.0 re-scaled mini_arithmetic, mini_common_sense and mini_tool_call again, so a snapshot from before v0.76.0 is stale for all three: see the next section.)
+The suites were re-shaped again, and the scorer revision became 5 (v0.76.0)
+Three of the eight bundled suites were re-scaled so that a strong small model no longer sits on the 1.000 ceiling they had (tracked upstream as #1192 and #405):
+mini_tool_call is still 40 items, but 16 of them now ask a question that needs no tool and expect the literal response NO_TOOL; 24 are tool calls. A NO_TOOL row passes only when the whole trimmed response is NO_TOOL (a fenced NO_TOOL fails); the positive tool calls still tolerate fences.
+mini_arithmetic is now 40 items (36 before): 24 single-step rows kept and 16 multi-step or large-operand rows added.
+mini_common_sense is now 40 items (24 before). The old answer key was 14 of 24 B, so a constant "B" scored 0.583; the new key is A 11, B 11, C 12, D 6.
+mini_mmlu (26 items), mini_instruction (24) and mini_format_json, mini_safety and mini_over_refusal (40 each) kept their size at v0.76.0 (v0.77.0 grew mini_mmlu to 40, see below). The refusal classifier behind mini_safety and mini_over_refusal also counts "I'm unable" and "I'm not able" as refusals now, which moves those two suites, the refusal probe of soup diagnose and expect_no_refusal_pattern.
+The bundled-scorer revision that is stamped into a --baseline file or registry row was 5 at v0.76.x (it was 1 through v0.75.2: 2 is the tool-call fixture, 3 the refusal classifier, 4 the arithmetic items, 5 the common-sense items). A --baseline stamped with any other revision, or with none, warns instead of being compared silently on the new scale. Re-take it. (Since v0.77.0 the revision is 7: see the next section.)
+What the upstream records measured, each in its own record with greedy decoding and a 256-token cap. Compare within a row, never across rows: the strong reference and the machine differ.
+
+SuiteStrong referenceSmall referenceMachine
+mini_tool_callQwen2.5-7B-Instruct: 1.000 (40/40) on the v0.73.2 fixture, 0.850 (34/40) on this oneSmolLM2-135M-Instruct: 0.075 on the v0.73.2 fixture, 0.050 (2/40) on this oneApple M4 Max
+mini_arithmeticQwen2.5-1.5B-Instruct: 0.800 (32/40); four of its eight misses are rows cut off at the 256-token capSmolLM2-135M-Instruct: 0.375 (15/40)Apple M1, 32 GB
+mini_common_senseQwen2.5-1.5B-Instruct: 0.850 (34/40)SmolLM2-135M-Instruct: 0.275 (11/40), which is also what a constant "A" or "B" scoresApple M1
+No 7B figure is claimed for arithmetic or common sense. These are discrimination checks (does the suite tell a strong model from a weak one), not leaderboard scores. The records are gate-v0.76.0-tool-call-discrimination.md, gate-v0.76.0-arithmetic-discrimination.md and gate-v0.76.0-common-sense-discrimination.md in the benchmarks directory.
+mini_mmlu grows to 40 and the scorer revision is 7 (v0.77.0)
+mini_mmlu had reached a ceiling (a strong reference scored 26 of 26) and its answer key favoured one letter. It grows from 26 to 40 four-option rows, many with a common misconception as a distractor, and the key is now A 11, B 12, C 11, D 6, so a model that always answers "B" drops from 0.462 to 0.300 (#2113). Upstream's record measured it on an Apple M1 (32 GB, MPS, greedy decoding, 256-token cap): Qwen2.5-1.5B-Instruct 0.850 (34/40) and SmolLM2-135M-Instruct 0.350 (14/40). In the record's own words, these numbers show the fixture leaves the rails for a 1.5B model; they do not show that a 7B model is off the ceiling (gate-v0.76.0-mmlu-discrimination.md, at the v0.77.0 tag).
+The multiple-choice extractor also reads more spellings (#1924): a lone option letter wrapped in markdown emphasis, quotes, backticks or square brackets, and a standalone uppercase letter that leads the output before a line break,  is or  -. A prose opener such as A cat is ... still earns nothing. On v0.76.1 an answer written as **B** earned no credit, so a model that bolded every letter scored 0.000 on mini_mmlu.
+The live generator soup ship uses now decodes in left-padded batches of up to eight prompts, with the same prompt preparation as one-at-a-time decoding, and a failed generation scores zero on every suite, including mini_over_refusal, where an empty answer used to count as "not refused" (#1958). No throughput figure is claimed. Since v0.77.2 the batches are also the unit of progress and of retry: see --progress jsonl.
+The bundled-scorer revision is 7 (5 at v0.76.x; revision 6, in upstream's words, "prevents generation failures from earning credit", and 7 is the 40-row mini_mmlu). A --baseline written by v0.76 warns instead of being compared on the new scale: write it again.
+Warning: 
+Re-run this (v0.77.0). Bundled-suite scores and --baseline files from v0.76.x are on the old scale: re-take them. Separately, a leg-1 task eval whose rows use scoring: tool_call_match or tool_call_args_subset credited a JSON number where the task expected a boolean: in upstream's words, "a model that answered {"enabled": 1} where the task expected {"enabled": true} scored 1.0", and "scores recorded before this change can be higher than the same outputs score now" (#1756). Since v0.77.0 a boolean and a number never match, while 1 and 1.0 still do. Re-judge a --task-mode metric verdict whose task file uses either scorer. The bundled mini_tool_call suite scores on its own and is not affected by this change.
+Measure the instrument first: --noise-floor (v0.73.2)
+Greedy decoding is not deterministic on a GPU. Measured over five runs of one model with no adapter, the scores spread 0.015 strict and 0.020 format-blind, against a threshold of 0.05, and four of six paired deltas in that session sat inside the floor. Until v0.73.2 the gate compared against 0.05 without ever saying what it could resolve.
+
+bashCopysoup ship --base ./base --adapter ./out --task-eval task.jsonl --noise-floor 5
+--noise-floor N (N from 2 to 10) re-runs the base N times, prints the measured floor beside the verdict, and gates each axis at whichever is larger, the threshold or the floor. Two caveats travel with it: those two figures are the borrowed H100 session's, not the release's own development box, which measured 0.0000 on CPU where greedy decode is deterministic; and at n=3, one model, one dataset the floor sizes the effect rather than calibrating a threshold. Widening its scope in v0.73.3 did not change that second caveat.
+Since v0.73.3 the leg-1 task floor is measured in every --task-mode, not only metric. In judge_score the base side is scored N times through the judge; in pairwise the base model is judged against itself, where the expected win rate is 0.5 by construction, so the spread is measured rather than inferred. Those repeats fold in the judge's own sampling noise, so that floor is labelled decode + judge on the panel and stamped judge_inclusive in the evidence and JSON output, and it must never be read as a decode-only number. The cost is N extra judge API calls, and a missing or malformed --judge-model is now a usage error up front rather than a failure discovered mid-measurement.
+The floor is also committable. eval.ship.noise_floor joins the other gate-policy fields under eval.ship in soup.yaml, bounded to the same [2, 10] from the same constant the CLI validates against, with CLI over config over default precedence. Like the flag, it is a live-measurement input: it is measured when a run produces evidence and refused under --evidence, and it is excluded from the recipe hash, so setting a floor never invalidates evidence you already have.
+Evidence you can commit (v0.71.39)
+v0.71.38 made the verdict trustworthy; v0.71.39 makes it reproducible and provenance-bound, so soup ci init becomes CI for weights, not prompts.
+
+bashCopy# emit the verdict back into the --evidence input schema (a run's output replays as input)
+soup ship --base <m> --adapter ./out --task-eval tasks.jsonl --emit-evidence evidence.json
+
+# commit the gate policy in soup.yaml (eval.ship), then run it; CLI > config > default
+soup ship --base <m> --adapter ./out --config soup.yaml --emit-evidence evidence.json
+
+# post the verdict as a PR comment (best-effort, never flips the exit code)
+soup ship --base <m> --adapter ./out --config soup.yaml --push owner/repo#42
+
+# offline, no model load: stamp raw scores with the config's provenance, then gate on them
+soup ship --evidence scores.json --config soup.yaml --emit-evidence evidence.json
+soup ship --evidence evidence.json --config soup.yaml
+--config carries the gate policy only. The base and tuned models are still --base and --adapter (or --tuned), or you pass --evidence to decide offline; soup ship --config soup.yaml on its own is a usage error (exit 3). Because eval.ship.task_eval can live in the config, --task-eval becomes optional once it is committed.
+--emit-evidence <path> re-serializes the verdict into the --evidence input schema, so the same file replays through --evidence (same --forgetting-threshold) to an identical verdict.
+ShipConfig under eval.ship in soup.yaml + --config soup.yaml commit the gate policy (task_eval / task_mode / general_suite / forgetting_threshold / judge_model / baseline, plus noise_floor since v0.73.3). Precedence is CLI > config > default.
+Provenance + staleness gate. Emitting evidence stamps a provenance block (an order-insensitive config_sha, the base_model, a best-effort data_sha). Reading evidence back with --config then refuses (exit 3) evidence whose config_sha drifted from the committed recipe. The gate policy itself is excluded from the hash, so tuning forgetting_threshold never falsely invalidates evidence, and so is training.rewind_log (since v0.76.0), which only decides whether the run writes rewind.jsonl beside the model.
+soup ci init --config soup.yaml binds the generated PR gate to that committed config, so the check on every pull request enforces provenance too.
+Evidence bound to what it scored: --require-provenance (v0.77.0)
+--emit-evidence now also writes a provenance.binding block beside config_sha: the adapter's manifest Merkle root (the manifest adapter signing uses), the task-eval file's SHA-256, the local training source as read at verdict time when it is a single plain local file, the suite names with the Soup and scorer versions, and the effective verdict policy (threshold, task mode, suites, judge identity, noise-floor repeats) with its own hash. A judge URL is hashed, so its path, query and credentials are not written. Store evidence outside the adapter directory, because the manifest covers its files.
+
+bashCopysoup ship --evidence ship_evidence.json --config soup.yaml --adapter ./adapter \
+  --task-eval tasks.jsonl --require-provenance
+--require-provenance is opt-in and offline. It needs --evidence, --config, a local non-empty --adapter and a readable task-eval file (--task-eval or eval.ship.task_eval). Without the first three it exits 3 (--require-provenance needs --evidence, --config and a local --adapter), and without a task eval or with an empty adapter it exits 3 when it compares (provenance comparison needs a known task_eval_sha256, or ... adapter_merkle_root). It recomputes the binding and exits 3 when any bound input differs (stale provenance: artifact, task, training source, suites or policy differs), when the evidence carries no binding (re-emit trusted scores), or when a judge-mode binding has no declared --judge-model. The suites compared are the ones the replay would score: with no --general-suite that is all eight bundled suites, so for evidence that covers fewer, pass the same --general-suite when you stamp and when you replay. The plain replay without the flag is unchanged.
+--data-sha256 <64 lowercase hex> records a training-data identity that you assert; upstream's help calls it "not proof of which bytes trained the model". When the training source cannot be read at verdict time (remote, mixed, replay, tokenized, streaming or directory inputs), strict verification requires that assertion. It needs --emit-evidence or --require-provenance, and a value that is not 64 lowercase hex characters exits 3. This is drift detection, not proof: in upstream's words, "This is not a model run, attestation, signature or forgery protection. The unkeyed hashes detect drift." Use the signing and attestation tools for a trust boundary. The SHA-256 that soup train records at startup is a separate record (see Registry).
+Chat-template variables on a live run (v0.77.0)
+
+bashCopysoup ship --base <m> --adapter ./out --task-eval tasks.jsonl \
+  --chat-template-kwargs '{"enable_thinking": false}'
+--chat-template-kwargs passes a JSON object of variables to the tokenizer's chat template on a live run, equally for the base and the tuned model (#1776). Whether a variable does anything depends on the model's template. It is live-only: with --evidence it exits 3 (--chat-template-kwargs applies only to a live run, not --evidence), and so does a value that is not a JSON object or that names a key the encoder controls (tokenize, add_generation_prompt, chat_template, max_length and the others upstream lists). It does not configure the lm-eval benchmark legs.
+Follow a run without parsing text: --progress jsonl (v0.77.1)
+
+bashCopysoup ship --base <m> --adapter ./out --task-eval tasks.jsonl --progress jsonl 2> ship-progress.jsonl
+--progress jsonl is opt-in (#2171 by @kok-o). The ordinary verdict and status output stay on stdout and the exit codes do not change (0 SHIP, 2 DON'T SHIP, 3 usage, 1 runtime). While the command runs, stderr carries only JSON Lines, one object per line, so a CI job or a wrapper can follow a verdict without parsing console text. Any other value, --progress json for instance, exits 3 with Error: --progress must be jsonl.
+Every event has the same keys:
+
+KeyValue
+schema_version1
+eventstart, progress, end or error
+phaseload, task_eval, suite_eval or verdict
+sidebase, tuned or null
+suitethe suite being scored, or null
+repeatthe one-based --noise-floor repeat, or null
+done, totalcounts, or null where a phase has no countable items
+An error event also carries "error": "execution_aborted", a fixed code and never the exception text. verdict brackets the whole command. A completed DON'T SHIP (exit 2) is a finished verdict and ends with end, not error. Offline, --evidence emits only the verdict pair: on a valid evidence file stderr is exactly a start and an end (exit 0 for SHIP, 2 for DON'T SHIP), and on an evidence file that is missing or malformed it is a start and an error (exit 3), with the human-readable Error: ... line still on stdout. The load, task_eval and suite_eval groups and the progress events with done and total come from a live run, which needs a model and was read from the code, not run, for this page. Since v0.77.2 (#2421) a live run reports items after each generation chunk, before the next chunk is generated, instead of waiting for the whole suite (eight prompts per chunk by default for the live generator). A chunk that fails retries only its own prompts, individually, without repeating chunks that completed. Scores and the event schema are unchanged, and soup eval custom and the forgetting probe use the same chunked path. A batch generator that does not declare a positive integer batch_size still reports its results after its whole batch returns. An argument-parsing error from Click, a mistyped flag for instance, keeps Click's ordinary format and emits no events.
+Because stderr is exclusive in this mode, Python warnings, logging, native-library output and tracebacks are dropped from it. An unexpected exception exits 1 with start and error events on stderr and no traceback; since v0.77.2 (#2297, #2417) stdout also gets one line, Error: <ExceptionType>: <message>, with terminal control characters removed and markup shown literally (through v0.77.1 the exit was 1 and nothing was printed). Ctrl+C is exit 130, not 1: the active groups end with error events and the command exits 130 (through v0.77.1 it was 1). Upstream lists that 130 path among the things not exercised by hand before the v0.77.2 release, so this page states it from the code and the release notes. No clock or throughput field exists, and no task text, response, path or credential is an event field. It is not a progress bar, and the counts are not promised for every phase: load, the lm-eval groups and verdict carry null.
+If you shipped a 4-bit or 8-bit adapter before v0.74.0, re-judge it
+The judge loaded the base model at full precision no matter what the run had trained at, so an NF4-trained adapter was scored against a bf16 base it never saw during training, and the fallback message claimed bf16 while never actually setting a dtype. A live soup ship run with --config soup.yaml now derives the load precision from training.quantization when it is 4bit or 8bit, and prints the precision it actually loaded. Other quantization formats still fall back to full precision, and advise --probe-model, diagnose --base-model and tunability --live take no such flag yet, so they keep the old default. Two halves of that issue stayed open for two releases: the numerics were not stamped into the verdict or the evidence JSON, and there was no staleness gate on evidence whose numerics did not match. (Since closed in v0.76.0, #367.) --emit-evidence now writes a top-level numerics stamp (4bit, 8bit, bfloat16 or float32: the precision the judge loaded), the verdict panel prints Judge numerics: ... (unstamped for evidence from before the stamp) and --output carries it. --evidence together with --config refuses (exit 3) a replay whose numerics family differs from what the config implies, meaning 4-bit against full precision or 4-bit against 8-bit (bfloat16 and float32 count as one family), the same way it refuses a drifted config_sha. Evidence with no stamp is accepted with a warning (evidence has no numerics stamp; cannot verify the judge loaded the same precision as --config), and a malformed stamp is exit 3. A paired comparison that judged both arms the same way stays valid.
+Flags
+
+FlagDefaultDescription
+--base(required, live)Base model id or path, the "before".
+--tuned / --adapter(one required, live)The "after": a separate tuned model, or a LoRA adapter on top of --base. Mutually exclusive. A local --adapter directory whose every lora_B is zero, with no non-zero saved tensor beside them, is DON'T SHIP with rule adapter_noop before any model loads (v0.77.2; the conditions).
+--task-eval(required for a live run, unless eval.ship.task_eval is set in the config)JSONL of leg-1 task-win eval items. cwd-contained, symlink-rejected.
+--task-modemetricLeg-1 mode: metric (eval accuracy), judge_score (pointwise LLM-as-a-judge), or pairwise (a swap-debiased judge win-rate, base vs tuned per prompt, base = 0.5). pairwise requires --judge-model (v0.71.31).
+--judge-model(judge mode only)Judge URL, validated by scheme and host (blocks SSRF prefix bypasses) and, since v0.75.2, refused if it names a private, link-local or reserved IP address (use a hostname; see private addresses refused); since v0.76.0 a host written only as digits that is not a valid IPv4 address (10.0.0.256, 4294967296) is refused the same way. Checked before either model loads; a refusal is a usage error, exit 3. A judge that cannot be reached during the run is exit 1. http accepts localhost, 127.0.0.1 and ::1 only (::1 since v0.76.0, #1548). eval.ship.judge_model goes through the same check when a judge-mode soup ship runs.
+--general-suiteeight mini suitesLeg-2 benchmarks. Default is the eight bundled offline suites (seven from v0.71.38, plus mini_over_refusal in v0.73.2); named suites route through lm-eval as an override. ≤ 50 names.
+--noise-floor(off)Re-run the base model N times ([2, 10]) to measure what this instrument can resolve, print it beside the verdict, and refuse to call any smaller delta significant (v0.73.2). Every --task-mode since v0.73.3; in the judge modes it costs N judge passes and is labelled decode + judge.
+--baseline(none)Recorded base leg-2 scores, registry://<id> or a JSON file, to skip the base run. A registry baseline takes each benchmark's newest eval row, so re-measuring a benchmark replaces its old score. A baseline with no scorer stamp, or one from another scorer revision, warns once; for a registry baseline the warning names the affected benchmarks. An unusable spec is exit 3.
+--forgetting-threshold0.05Max allowed leg-2 drop in absolute points, in [0.0, 1.0].
+--evidence(offline mode)Decide from a pre-computed scores JSON, no model load. O_NOFOLLOW, 16 MiB cap, cwd-contained. A missing, unreadable or malformed file, or one with a field the schema does not list, is exit 3.
+--config(none)Load the gate policy from eval.ship in soup.yaml; also gates --evidence on config staleness (v0.71.39). CLI > config > default. The file is read under a 4 MiB cap, so a config over 1 MiB that soup train refuses still loads here, and since v0.76.1 under the shared YAML limits (100 levels of nesting, and one node per source byte plus 10,000 through anchors, aliases and merge keys); a config over the size cap or past either YAML limit exits 3 (Error: --config: ...).
+--emit-evidence(none)Re-serialize the verdict into the --evidence input schema, stamped with a provenance block (v0.71.39).
+--push(none)owner/repo#N: post the verdict as a GitHub PR comment. Needs the gh CLI and GITHUB_TOKEN or GH_TOKEN. Best-effort; a failed post warns and never flips the exit code, but a malformed target is a usage error (exit 3) before anything runs (v0.71.39).
+--require-provenanceoffStrict offline drift check (v0.77.0). Needs --evidence, --config, a local --adapter and a task eval; compares the evidence's binding with the adapter, task and training-source bytes, the suites and scorer revision and the verdict policy, and exits 3 on any difference. A drift check, not an attestation.
+--data-sha256(none)A training-data SHA-256 you assert (64 lowercase hex), recorded in emitted evidence and compared by --require-provenance (v0.77.0); not proof of which bytes trained the model. Needs --emit-evidence or --require-provenance, otherwise exit 3.
+--chat-template-kwargs(none)Chat-template variables for a live run, as a JSON object passed the same way to the base and the tuned model, for example {"enable_thinking": false} (v0.77.0). With --evidence, or a value that is not a JSON object or names a key the encoder controls, exit 3.
+--progress(off)jsonl: versioned JSON Lines progress events on stderr for CI and tooling (v0.77.1). Opt-in; the verdict and the 0, 2 and 3 exit codes are unchanged. In this mode an unexpected exception exits 1 with no traceback (since v0.77.2 it also prints Error: <type>: <message> on stdout) and Ctrl+C exits 130 (v0.77.2, #2417; not exercised by hand upstream). Live runs report items after each generation chunk (v0.77.2). Any other value exits 3. See Follow a run without parsing text.
+--output(stdout)Write the verdict JSON to a path (kept under cwd).
+--deviceautocuda or cpu for the live run.
+Why no other tool ships this
+Leg 2, the catastrophic-forgetting gate, is the moat. Plenty of tools will tell you whether your task metric went up. What we have not found elsewhere is a first-class binary command that refuses a model on the grounds that it broke general knowledge. The regression math reuses Soup's existing eval-gate kernel, the new value is the single fused verdict, the one-screen reason, and a task-win leg that now includes a real pairwise judge win-rate.
+Inference prompts now match training (v0.75.0)
+Until v0.75.0 every generating command, including this one, rendered the chat template to text and then handed that text to the tokenizer, which added its own special tokens on top. On a template that renders a BOS itself — Llama-3, Gemma, Mistral — that meant a doubled BOS at inference against the single one Soup's default supervised path trains with.
+Measured: 2 BOS down to 1 on vendor templates, 1 down to 0 on Soup's own data.chat_template presets, which render none, plus no trailing EOS from tokenizers that append one. usage.prompt_tokens drops accordingly.
+So a verdict issued before v0.75.0 was measured on a prompt that differed from training by a token. Nothing about the weights changed, and the same applies to soup bench numbers, soup diff comparisons, soup diagnose, soup advise and the eval gate's own generators. Re-judge rather than assuming.
+Two riders travel with it. An adapter trained with train_on_responses_only: false saw the doubled BOS in training, so it now differs from inference by one token in the other direction. (Since fixed in v0.76.0 for new training runs, #788; an adapter trained on v0.75.x still carries the extra BOS.) And the vLLM, SGLang and DeepSpeed-MII engines were still affected at v0.75.0, because they tokenize the rendered string themselves rather than receiving ids; --backend transformers was the workaround if you needed the verdict to match training exactly. (Since closed in v0.76.0: those three backends now hand their engine token ids with no second BOS, #867, #890 and #891, so a verdict measured through one of those engines on v0.75.2 or earlier needs the same re-judging.)
+v1 honesty
+Pairwise judge win-rate (--task-mode pairwise) is live as of v0.71.31: the judge picks base vs tuned per prompt, swap-debiased (a win counts only when both orders agree), base is a 0.5 coin-flip and the tuned model wins only if its win-rate exceeds 0.5. soup ship calls the judge directly and does not go through trl; the trl-capability adapter belongs to Online DPO.
+ShipConfig under eval.ship is live as of v0.71.39 (the earlier CLI-only note no longer holds); the verdict engine is pure-Python and fully tested.
+Built-in mini-benchmarks are offline and instant, lm-eval suites block on a real model load.
+One honesty note that shipped alongside these releases: Soup's telemetry primitives existed with no command wired to them, so nothing was ever sent. v0.75.0 wired them, strictly opt-in and hardware-only, and the shipped wheel still sends nothing even when opted in, because its bundled project key is a placeholder the sender refuses (an opted-in command prints Notice: telemetry is not yet live.). Only an operator's own SOUP_POSTHOG_KEY changes that. What the payload would carry.
+See also
+Eval-gated training — halt a run mid-training on a quality regression; soup ship is the post-training counterpart.
+Model report card (soup diagnose) — the seven-failure-mode x-ray that pairs with the verdict.
+Soup Loop — where the verdict slots into the traces → DPO → canary flywheel.
+Lean install + live wiring (v0.71) — the release line soup ship caps off.PreviousBest-of-N & EvolveNextInference Server
+
+Soup is free and Apache-2.0. If it saved you a training run, starring the repo costs nothing and helps most. You can also fund the GPU time behind the work a 4 GB laptop cannot reach.
+
+On this page
+The decision rule
+An adapter that adds nothing is refused first (v0.77.2)
+Run it
+Decide offline, with no model load
+Pairwise judge win-rate (v0.71.31)
+The regression leg grew teeth (v0.71.38)
+An eighth suite, and two of the seven were mis-scoring (v0.73.2)
+The suites were re-shaped again, and the scorer revision became 5 (v0.76.0)
+mini_mmlu grows to 40 and the scorer revision is 7 (v0.77.0)
+Measure the instrument first: --noise-floor (v0.73.2)
+Evidence you can commit (v0.71.39)
+Evidence bound to what it scored: --require-provenance (v0.77.0)
+Chat-template variables on a live run (v0.77.0)
+Follow a run without parsing text: --progress jsonl (v0.77.1)
+If you shipped a 4-bit or 8-bit adapter before v0.74.0, re-judge it
+Flags
+Why no other tool ships this
+Inference prompts now match training (v0.75.0)
+v1 honesty
+See also
+
+
+Soup
+Fine-tune LLMs in one command.
+$pip install "soup-cli[train]"
+Copy
+
+Contact
+[CONTACT REDACTED]
+[CONTACT REDACTED]
+
+Product
+Getting Started
+Training
+CLI Reference
+
+Resources
+Documentation
+About
+Stats
+PyPI
+GitHub
+Paper (DOI)
+Measurement records
+
+Community
+Issues
+Discussions
+Discord
+Telegram
+YouTube
+LinkedIn
+Twitter
+Product Hunt
+Star on GitHub
+Support Soup
+
+
+Soup is an open-source project by MePlay, Inc., a Delaware corporation.
+Built by Rafik Mamedov and Alpamys Makazhan.
+© 2026 MePlay, Inc. soup-cli is released under the Apache-2.0 License.

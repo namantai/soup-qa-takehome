@@ -1,0 +1,31 @@
+{
+  "command": [
+    "<PROJECT>/.venv/bin/soup",
+    "data",
+    "preprocess",
+    "logs/stage-5/20261111T065954Z-preprocess-574245/baseline.yaml",
+    "--output",
+    "logs/stage-5/20261111T065954Z-preprocess-574245/baseline-cache",
+    "--yes"
+  ],
+  "cwd": "<PROJECT>",
+  "environment_overrides": {
+    "HF_HUB_OFFLINE": "1",
+    "HF_DATASETS_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "HF_HUB_DISABLE_TELEMETRY": "1",
+    "WANDB_MODE": "disabled",
+    "DO_NOT_TRACK": "1",
+    "CUDA_VISIBLE_DEVICES": "",
+    "NO_COLOR": "1",
+    "TERM": "dumb",
+    "COLUMNS": "120",
+    "PYTHONHASHSEED": "0",
+    "PYTHONPATH": "<PROJECT>/runs/stage5-tokenizer-deps:<PROJECT>:<PROJECT>"
+  },
+  "started_utc": "2026-11-11T06:59:55.212465+00:00",
+  "timeout_seconds": 60,
+  "exit_code": 0,
+  "termination": null,
+  "duration_seconds": 3.0741831749992343
+}

@@ -1,0 +1,23 @@
+{
+  "model_id": "HuggingFaceTB/SmolLM2-135M",
+  "model_revision": "93efa2f097d58c2a74874c7e644dbc9b0cee75a2",
+  "model_directory": "models/smollm2-135m",
+  "python_version": "3.11.16",
+  "bootstrap_uv_version": "0.13.1",
+  "required_gpu": "T4",
+  "seed": 1234,
+  "expected_optimizer_steps": 16,
+  "expected_train_rows": 32,
+  "expected_validation_rows": 8,
+  "dataset_sha256": "ea6478a69569d0200fb380a20039a18a377512694f32531e307999d08ed8a005",
+  "evaluation_sha256": "a1c325ec3706036b51b33b08eb76cda1f4f1fef91078561625c1a0db41b2f198",
+  "evaluation": {
+    "device": "cpu",
+    "dtype": "float32",
+    "attention": "eager",
+    "threads": 1,
+    "do_sample": false,
+    "max_new_tokens": 12,
+    "seed": 1234
+  }
+}

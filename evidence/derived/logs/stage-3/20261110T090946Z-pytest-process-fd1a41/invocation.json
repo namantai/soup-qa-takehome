@@ -1,0 +1,8 @@
+{
+  "actual_test_command": [
+    ".venv/bin/python",
+    "-m",
+    "pytest",
+    "-q"
+  ]
+}

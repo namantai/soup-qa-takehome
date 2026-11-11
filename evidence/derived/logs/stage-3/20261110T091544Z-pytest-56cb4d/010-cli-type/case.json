@@ -1,0 +1,11 @@
+{
+  "category": "cli-type",
+  "description": "Non-integer --nodes value 'a'; parsing precedes distributed setup",
+  "expected_exit_code": 2,
+  "diagnostic": [
+    "--nodes",
+    "not a valid int"
+  ],
+  "oracle": "train --help: --nodes INT; https://trysoup.dev/docs/exit-codes",
+  "input_sha256": "9d3ba7655a8cb4776970fb3ae6e5da2029741cd9a8792d90c6814db44c6a966f"
+}

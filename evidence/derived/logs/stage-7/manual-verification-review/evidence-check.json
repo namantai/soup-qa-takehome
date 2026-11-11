@@ -1,0 +1,137 @@
+{
+  "status": "PASS",
+  "checks": {
+    "BUG-001": {
+      "one_failed_expectation": true,
+      "original_input_identical": true,
+      "input_hash_matches": true,
+      "data_matches_original_and_quickstart": true,
+      "trigger_present": true,
+      "recorded_real_dry_run": true,
+      "soup_exit_zero_no_harness_stop": true,
+      "ready_18_train_2_val": true,
+      "stderr_empty": true,
+      "missing_field_diagnostic": true,
+      "assessment_matches_raw_result": true
+    },
+    "BUG-002": {
+      "one_failed_expectation": true,
+      "original_input_identical": true,
+      "input_hash_matches": true,
+      "data_matches_original_and_quickstart": true,
+      "trigger_present": true,
+      "recorded_real_dry_run": true,
+      "soup_exit_zero_no_harness_stop": true,
+      "ready_18_train_2_val": true,
+      "stderr_empty": true,
+      "missing_field_diagnostic": true,
+      "assessment_matches_raw_result": true
+    },
+    "BUG-003": {
+      "only_prompt_strategy_differs": true,
+      "one_row_synthetic_input": true,
+      "probe_snapshot_matches_current": true,
+      "callback_snapshot_matches_current": true,
+      "baseline_exit_zero": true,
+      "baseline_command_consistent": true,
+      "baseline_cache_agrees_with_record": true,
+      "baseline_decoded_agrees": true,
+      "baseline_cache_has_no_marker": true,
+      "baseline_success_no_transform_notice": true,
+      "configured_exit_zero": true,
+      "configured_command_consistent": true,
+      "configured_cache_agrees_with_record": true,
+      "configured_decoded_agrees": true,
+      "configured_cache_has_no_marker": true,
+      "configured_success_no_transform_notice": true,
+      "same_cache_key": true,
+      "same_actual_cache_rows": true,
+      "normal_sft_has_marker": true,
+      "recorded_assessment_is_failed": true
+    }
+  },
+  "records": {
+    "BUG-001": {
+      "session": "logs/stage-3/20261111T152701Z-replay-168be6",
+      "command": [
+        "../../../../.venv/bin/soup",
+        "train",
+        "--config",
+        "input.yaml",
+        "--dry-run"
+      ],
+      "cwd": "logs/stage-3/20261111T152701Z-replay-168be6/001-range-dropout",
+      "soup_exit": 0,
+      "attempts": 1
+    },
+    "BUG-002": {
+      "session": "logs/stage-3/20261111T152727Z-replay-4dd592",
+      "command": [
+        "../../../../.venv/bin/soup",
+        "train",
+        "--config",
+        "input.yaml",
+        "--dry-run"
+      ],
+      "cwd": "logs/stage-3/20261111T152727Z-replay-4dd592/001-empty",
+      "soup_exit": 0,
+      "attempts": 1
+    },
+    "BUG-003": {
+      "session": "logs/stage-5/20261111T152736Z-preprocess-9d9482",
+      "cache_keys": {
+        "baseline": "8677102a1899a552",
+        "configured": "8677102a1899a552"
+      },
+      "same_cache_key": true,
+      "normal_sft_has_marker": true,
+      "preprocess_has_marker": false
+    }
+  },
+  "original_files": {
+    "logs/stage-3/20261111T152701Z-replay-168be6/001-range-dropout/assessment.json": "b7193d80c03edbe016ad0cdd6d37949b3580a12a5ffa5ae01769f037736b3f4a",
+    "logs/stage-3/20261111T152701Z-replay-168be6/001-range-dropout/case.json": "f8cd5ff5502bb5c20c7bd8e0569aacc3c5690d8db2c5e4fc8f454281144e4ea5",
+    "logs/stage-3/20261111T152701Z-replay-168be6/001-range-dropout/input.yaml": "8c06d4ac63cd0580b1dda11a6a51a7aecfb39fb1fbe610d1ed36a104348f1837",
+    "logs/stage-3/20261111T152701Z-replay-168be6/001-range-dropout/meta.json": "bc7c4385e233d187bd83e3daaf264beb26ee18b7f3b956e03537dba39e1a72fb",
+    "logs/stage-3/20261111T152701Z-replay-168be6/001-range-dropout/quickstart_data.jsonl": "b13e15b1cbcd5268125efc26419208c6350a7e479b661323a8ebfc2c1845d056",
+    "logs/stage-3/20261111T152701Z-replay-168be6/001-range-dropout/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/stage-3/20261111T152701Z-replay-168be6/001-range-dropout/stdout.txt": "67367d9ee66938fcedc2164ba45b1f0fdba133b741109d255d66b644fbaf7381",
+    "logs/stage-3/20261111T152701Z-replay-168be6/replay-summary.json": "8645fbe014b7de30c24d4833f776f88746849e224f88e3d87015d274be90e832",
+    "logs/stage-3/20261111T152727Z-replay-4dd592/001-empty/assessment.json": "6ff9fc8e4dfc90007e8dfc556ee98c529e305b1c7ed9d389be5a45d7eb563dd5",
+    "logs/stage-3/20261111T152727Z-replay-4dd592/001-empty/case.json": "82bdc1bfba94269651865d0933d75605507254d036a217d8b2c565ffd422a395",
+    "logs/stage-3/20261111T152727Z-replay-4dd592/001-empty/input.yaml": "2368d75bccd88db750029ffdc0fe68f9f058965ac0559426643b8c2ee3d98fea",
+    "logs/stage-3/20261111T152727Z-replay-4dd592/001-empty/meta.json": "74ec70d81c61cecea68266ddda715b4c7f88bc64eb929c2f8b7d195ee709fe29",
+    "logs/stage-3/20261111T152727Z-replay-4dd592/001-empty/quickstart_data.jsonl": "b13e15b1cbcd5268125efc26419208c6350a7e479b661323a8ebfc2c1845d056",
+    "logs/stage-3/20261111T152727Z-replay-4dd592/001-empty/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/stage-3/20261111T152727Z-replay-4dd592/001-empty/stdout.txt": "2c7c916ef1069c82d651dced18e97623593c22d2d8b40942184cb9bce8d06a59",
+    "logs/stage-3/20261111T152727Z-replay-4dd592/replay-summary.json": "d55a174f95d348706587c695d1b284a47813ae4ca444a84c13e0b72faae5bd32",
+    "logs/stage-5/20261111T152736Z-preprocess-9d9482/assessment.json": "44a430dd9ba7f4a62abe772a5392519d18adf719e25edd6d144f8064cc417fe0",
+    "logs/stage-5/20261111T152736Z-preprocess-9d9482/baseline/invocation.json": "d3be8f19b3004ccf215ec5fe785d0481f7b090eaf9ed437a98c037d085b6f068",
+    "logs/stage-5/20261111T152736Z-preprocess-9d9482/baseline/result.json": "c0f95d478b856cdab983bbefacae4fe5bcb392094c9921a538b86ab16d2d2479",
+    "logs/stage-5/20261111T152736Z-preprocess-9d9482/baseline/stderr.txt": "8e2707b359d7cb806d8f358dc121bb7241b79dfe0d5183473600cb0191dd7a05",
+    "logs/stage-5/20261111T152736Z-preprocess-9d9482/baseline/stdout.txt": "96208f9284fe48604b6fb15cfccedd008f43192904faadb3a3906f13957590cb",
+    "logs/stage-5/20261111T152736Z-preprocess-9d9482/baseline-cache/8677102a1899a552/data-00000-of-00001.arrow": "5efc256403ec05255d3e21e73026701d9077d5d1b3fe188d00ffa0e54b0f3ec0",
+    "logs/stage-5/20261111T152736Z-preprocess-9d9482/baseline-cache/8677102a1899a552/dataset_info.json": "9f612886e11d9dbc9f22e8ff8287005a4958b860b7f01e4a0119cd599c6077c6",
+    "logs/stage-5/20261111T152736Z-preprocess-9d9482/baseline-cache/8677102a1899a552/metadata.json": "ac5b7f7b8e3f9d3b38dc7a1202510276d33f43803da65a90358feb18ca5c6655",
+    "logs/stage-5/20261111T152736Z-preprocess-9d9482/baseline-cache/8677102a1899a552/state.json": "dbbdf081991d16e552fdf5bb0eba0cda4562505ca70a6d111b6de75b32100eee",
+    "logs/stage-5/20261111T152736Z-preprocess-9d9482/baseline.yaml": "dba2ae579d001e70fc30ebe2229f79c4dc2d20d3a4b53ff7cd286d5ffa657125",
+    "logs/stage-5/20261111T152736Z-preprocess-9d9482/configured/invocation.json": "89bce5adecaab7c50934f9f841a062650879437a7fd40cf7f0914912dab6747f",
+    "logs/stage-5/20261111T152736Z-preprocess-9d9482/configured/result.json": "bbcbd9d7df8f35258ad39cfd7bdc0e17e4e8e1e5e6ef60e2710c37041d153c03",
+    "logs/stage-5/20261111T152736Z-preprocess-9d9482/configured/stderr.txt": "9feb214f021f344449cbb5d507ddcb8218718e4e14580c9d1a9d9c594087bdd1",
+    "logs/stage-5/20261111T152736Z-preprocess-9d9482/configured/stdout.txt": "0d709d374962b79d48820c2855a9eafb739c24810bf5e02f50d59c2d175adb92",
+    "logs/stage-5/20261111T152736Z-preprocess-9d9482/configured-cache/8677102a1899a552/data-00000-of-00001.arrow": "5efc256403ec05255d3e21e73026701d9077d5d1b3fe188d00ffa0e54b0f3ec0",
+    "logs/stage-5/20261111T152736Z-preprocess-9d9482/configured-cache/8677102a1899a552/dataset_info.json": "9f612886e11d9dbc9f22e8ff8287005a4958b860b7f01e4a0119cd599c6077c6",
+    "logs/stage-5/20261111T152736Z-preprocess-9d9482/configured-cache/8677102a1899a552/metadata.json": "ac5b7f7b8e3f9d3b38dc7a1202510276d33f43803da65a90358feb18ca5c6655",
+    "logs/stage-5/20261111T152736Z-preprocess-9d9482/configured-cache/8677102a1899a552/state.json": "dbbdf081991d16e552fdf5bb0eba0cda4562505ca70a6d111b6de75b32100eee",
+    "logs/stage-5/20261111T152736Z-preprocess-9d9482/configured.yaml": "a465e71da2d19065760f23addaa8403102589cfb69cc0600ccd47113af976ac3",
+    "logs/stage-5/20261111T152736Z-preprocess-9d9482/data.jsonl": "5a56a3420ff0042c5149bb5fd3f8ebe6bfe99632fd91e8e14dd88169c579847f",
+    "logs/stage-5/20261111T152736Z-preprocess-9d9482/expected.json": "537c55c24b01ba5ba09c6c2e247e96ecf3e68b88fc95eaf8c50783ddb4e35a98",
+    "logs/stage-5/20261111T152736Z-preprocess-9d9482/normal-sft-control.json": "e7e3f426bad32f4a919da0f9808d488c79aa02131e20dd084f6ee753e3864392",
+    "logs/stage-5/20261111T152736Z-preprocess-9d9482/probe_preprocess.py": "e2c389af5190a437d8f88148d8822acac0cab8bba07ec54679b31779a2d94450",
+    "logs/stage-5/20261111T152736Z-preprocess-9d9482/stage5_prompt_strategy.py": "2c72f938cca97853e662ed8c17146fb504f6cc216119b45d9c5385cf9a76c277"
+  },
+  "file_count": 40,
+  "new_soup_invocations": 0,
+  "new_training_runs": 0,
+  "limits": "Student execution and terminal review are attested by the student. Logs record child processes; no outer shell transcript or separately recorded helper exit code is present. Cache decoding here is AI-run verification, not a student-authored calculation."
+}

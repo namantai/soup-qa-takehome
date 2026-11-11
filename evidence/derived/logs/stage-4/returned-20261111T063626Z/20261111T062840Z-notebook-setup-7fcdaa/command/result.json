@@ -1,0 +1,14 @@
+{
+  "command": [
+    "<LOCAL_PATH>",
+    "-m",
+    "scripts.repro_colab_setup"
+  ],
+  "cwd": "<LOCAL_PATH>",
+  "environment_overrides": {},
+  "started_utc": "2026-11-11T06:28:40.732440+00:00",
+  "timeout_seconds": 2400,
+  "exit_code": 0,
+  "termination": null,
+  "duration_seconds": 75.77569868
+}

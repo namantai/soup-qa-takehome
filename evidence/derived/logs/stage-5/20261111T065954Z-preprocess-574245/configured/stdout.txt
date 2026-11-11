@@ -1,0 +1,12 @@
+Dataset: logs/stage-5/20261111T065954Z-preprocess-574245/data.jsonl
+Tokenizer: runs/returned/stage4-20261111T063626Z/runs/repro/run-a
+max_length: 128
+Loss mask: responses_only
+Cache key: e9ea6358f578c569
+Target: 
+<PROJECT>/logs/stage-5/20261111T065954Z-preprocess-574245/configured-cache/e9ea6358f578c569
+Wrote 1 tokenized rows to 
+<PROJECT>/logs/stage-5/20261111T065954Z-preprocess-574245/configured-cache/e9ea6358f578c569
+Set 
+data.tokenized_path=<PROJECT>/logs/stage-5/20261111T065954Z-preprocess-574245/configured-cache/e9e
+a6358f578c569 + data.format=pre_tokenized in your soup.yaml to short-circuit tokenization on subsequent runs.

@@ -1,0 +1,20 @@
+{"instruction": "What is machine learning?", "input": "", "output": "Machine learning is a subset of AI where computers learn patterns from data."}
+{"instruction": "Explain what a neural network is.", "input": "", "output": "A neural network is a computing system inspired by biological neural networks."}
+{"instruction": "What is Python?", "input": "", "output": "Python is a high-level programming language known for its readability."}
+{"instruction": "Define overfitting.", "input": "", "output": "Overfitting is when a model learns noise in training data instead of patterns."}
+{"instruction": "What is a GPU?", "input": "", "output": "A GPU is a specialized processor designed for parallel computation."}
+{"instruction": "Explain LoRA.", "input": "", "output": "LoRA (Low-Rank Adaptation) is a technique to fine-tune large models efficiently."}
+{"instruction": "What is tokenization?", "input": "", "output": "Tokenization is the process of splitting text into smaller units called tokens."}
+{"instruction": "Define transfer learning.", "input": "", "output": "Transfer learning uses a pre-trained model as a starting point for a new task."}
+{"instruction": "What is an epoch?", "input": "", "output": "An epoch is one complete pass through the entire training dataset."}
+{"instruction": "Explain gradient descent.", "input": "", "output": "Gradient descent is an optimization algorithm that minimizes loss iteratively."}
+{"instruction": "What is a loss function?", "input": "", "output": "A loss function measures how far model predictions are from actual values."}
+{"instruction": "Define batch size.", "input": "", "output": "Batch size is the number of training samples processed before updating weights."}
+{"instruction": "What is quantization?", "input": "", "output": "Quantization reduces model precision (e.g., 32-bit to 4-bit) to save memory."}
+{"instruction": "Explain attention mechanism.", "input": "", "output": "Attention lets models focus on relevant parts of input when generating output."}
+{"instruction": "What is fine-tuning?", "input": "", "output": "Fine-tuning is training a pre-trained model on task-specific data."}
+{"instruction": "Define learning rate.", "input": "", "output": "Learning rate controls how much model weights change during each training step."}
+{"instruction": "What is a transformer?", "input": "", "output": "A transformer is a neural network architecture based on self-attention."}
+{"instruction": "Explain backpropagation.", "input": "", "output": "Backpropagation computes gradients by propagating errors backward through layers."}
+{"instruction": "What is RLHF?", "input": "", "output": "RLHF trains models using human feedback as a reward signal."}
+{"instruction": "Define inference.", "input": "", "output": "Inference is using a trained model to make predictions on new data."}

@@ -1,0 +1,78 @@
+{
+  "normalized_config": {
+    "base": "./models/smollm2-135m",
+    "task": "sft",
+    "backend": "transformers",
+    "data": {
+      "train": "./fixtures/repro-train.jsonl",
+      "format": "alpaca",
+      "chat_template": "chatml",
+      "val_split": 0.2,
+      "max_length": 128
+    },
+    "training": {
+      "epochs": 2,
+      "lr": 0.0002,
+      "batch_size": 2,
+      "gradient_accumulation_steps": 2,
+      "seed": 1234,
+      "data_seed": 1234,
+      "quantization": "none",
+      "lora": {
+        "r": 4,
+        "alpha": 8,
+        "dropout": 0.05,
+        "target_modules": [
+          "q_proj",
+          "v_proj"
+        ]
+      },
+      "optimizer": "adamw_torch",
+      "scheduler": "constant",
+      "warmup_ratio": 0.0,
+      "weight_decay": 0.0,
+      "max_grad_norm": 1.0,
+      "logging_steps": 1,
+      "save_steps": 4,
+      "eval_steps": 4,
+      "gradient_checkpointing": false,
+      "packing": false,
+      "multipack": false
+    }
+  },
+  "model_manifest": {
+    "model_id": "HuggingFaceTB/SmolLM2-135M",
+    "revision": "93efa2f097d58c2a74874c7e644dbc9b0cee75a2",
+    "source": "Hugging Face snapshot_download with explicit commit",
+    "model_type": "llama",
+    "files": {
+      "config.json": "1d556eab73b69c7f11f64c557a2f9c6f440bd4c6b89bb2584a6b498c92603843",
+      "generation_config.json": "2056c988e990b0d13670f63f2f3b87b3b6d07edaf7a3416998ba27dab2d8a059",
+      "model.safetensors": "80521b40281d6ce74e35c9282c22539e75aa0ac8578892b2a59955ef78d55da1",
+      "merges.txt": "0b54e8aa4e53d5383e2e4bc635a56b43f9647f7b13832d5d9ecd8f82dac4f510",
+      "special_tokens_map.json": "e786b595b9a23148bf1630df78d9037a048ea671e48bfd3549a1e3c233742bb3",
+      "tokenizer.json": "9ca9acddb6525a194ec8ac7a87f24fbba7232a9a15ffa1af0c1224fcd888e47c",
+      "tokenizer_config.json": "4bb9af56a342753d39374f4016a16574cab299fe088e896f425ce3c433f61424",
+      "vocab.json": "82b84012e3add4d01d12ba14442026e49b8cbbaead1f79ecf3d919784f82dc79"
+    },
+    "download_budget_bytes": 419430400,
+    "tokenizer_smoke_ids": [
+      257,
+      1228,
+      3029,
+      1968,
+      2545
+    ]
+  },
+  "data_sha256": "ea6478a69569d0200fb380a20039a18a377512694f32531e307999d08ed8a005",
+  "eval_sha256": "a1c325ec3706036b51b33b08eb76cda1f4f1fef91078561625c1a0db41b2f198",
+  "policy_sha256": "6180bc6f6c64b952da866e757af489d0fec5ab42747007a928cd46b77142c8dc",
+  "lock_sha256": "fd2c05e8dbfa613ea99d5bc60e2c633a9a899c36f1c2758b0db357bf61ba0a14",
+  "experiment_sha256": "b064be6cf5110eb205538278d3c6f8fb03b4af0c9dd20822fa316ad05bef98c1",
+  "scripts_sha256": {
+    "scripts/repro_colab_setup.py": "5c6a191906c9b1b45ed575ad04483c08d565d61fa899b9bc51b35f05273f003b",
+    "scripts/repro_common.py": "90d0a7a636c45afe22e2b7d6ba4df3355308ea72ab0ec2d6f3e042fb7f782fce",
+    "scripts/repro_evaluate.py": "5ae82e80b31314436cd4679647b94c32dd1c8db6783cb0b774945770faa36ca8",
+    "scripts/repro_workflow.py": "122e7fc48b06c29e03a43a9b2feb0510a6da9a1689c214638cf7aa7d9f3a94cf"
+  }
+}

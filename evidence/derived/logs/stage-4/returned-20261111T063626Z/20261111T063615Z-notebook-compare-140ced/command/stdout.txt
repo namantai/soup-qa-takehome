@@ -1,0 +1,13 @@
+{
+  "status": "WITHIN_PREDECLARED_SCREEN",
+  "missing": [],
+  "sections": {
+    "identity": "MEASURED",
+    "environment": "MEASURED",
+    "training_loss": "MEASURED",
+    "validation_loss": "MEASURED",
+    "weights": "MEASURED",
+    "final_metrics": "MEASURED",
+    "evaluation": "MEASURED"
+  }
+}

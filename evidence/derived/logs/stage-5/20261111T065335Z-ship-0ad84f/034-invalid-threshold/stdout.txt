@@ -1,0 +1,1 @@
+Error: --forgetting-threshold must be in [0.0, 1.0]

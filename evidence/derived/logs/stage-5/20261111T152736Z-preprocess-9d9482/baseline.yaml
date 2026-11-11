@@ -1,0 +1,35 @@
+base: runs/returned/stage4-20261111T063626Z/runs/repro/run-a
+task: sft
+backend: transformers
+data:
+  train: logs/stage-5/20261111T152736Z-preprocess-9d9482/data.jsonl
+  format: alpaca
+  chat_template: chatml
+  val_split: 0
+  max_length: 128
+training:
+  epochs: 2
+  lr: 0.0002
+  batch_size: 2
+  gradient_accumulation_steps: 2
+  seed: 1234
+  data_seed: 1234
+  quantization: none
+  lora:
+    r: 4
+    alpha: 8
+    dropout: 0.05
+    target_modules:
+    - q_proj
+    - v_proj
+  optimizer: adamw_torch
+  scheduler: constant
+  warmup_ratio: 0.0
+  weight_decay: 0.0
+  max_grad_norm: 1.0
+  logging_steps: 1
+  save_steps: 4
+  gradient_checkpointing: false
+  packing: false
+  multipack: false
+output: ./runs/repro/run-a

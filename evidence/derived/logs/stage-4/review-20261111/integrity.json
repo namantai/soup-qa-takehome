@@ -1,0 +1,73 @@
+{
+  "archive_sha256": "0ed55654654bf350f60c59bfcb0051b2abd6a52cf0892ee0b20666b93b1dec1c",
+  "archive_members_verified": 240,
+  "inventory_files_verified": 90,
+  "approved_input_manifest_matches": true,
+  "recomputed_comparison_matches_original": true,
+  "comparison_status": "WITHIN_PREDECLARED_SCREEN",
+  "runs": {
+    "a": {
+      "exit_code": 0,
+      "run_id": "run_20261111_063349_bcac6378",
+      "global_step": 16,
+      "duration_seconds": 26.32381391499996,
+      "initial_loss": 7.765310287475586,
+      "final_loss": 6.587681770324707,
+      "mean_nll": 4.00261049087231,
+      "exact_matches": 0,
+      "eval_examples": 8,
+      "adapter_sha256": "2a3947153a3519e6996d1bd18b04ee966a26a838d8a277872164ef931c22fe92",
+      "tensors": 120,
+      "nonzero_lora_B_tensors": 60,
+      "nvidia_smi": "Tesla T4, <GPU_ID>, 580.82.07, 15360 MiB",
+      "torch": "2.6.0+cu124",
+      "cuda": "12.4",
+      "cudnn": 90100,
+      "evaluation_outputs": [
+        "\"ocean\"\n\n### Explanation:\nThe input word",
+        "dance\n\n### Explanation:\ndance is a",
+        "tiger\n\n### Explanation:\nThe input word tiger",
+        "field\n\n### Explanation:\n\nThe input field is",
+        "north\n\n### Explanation:\n\nThe input word is",
+        "south\n\n### Explanation:\n\nThe input word is",
+        "metal\n\n### Explanation:\n\nThe input word is",
+        "color\n\n### Explanation:\n\nThe input word is"
+      ]
+    },
+    "b": {
+      "exit_code": 0,
+      "run_id": "run_20261111_063446_4c5d55ce",
+      "global_step": 16,
+      "duration_seconds": 26.927963454000064,
+      "initial_loss": 7.765310287475586,
+      "final_loss": 6.587681770324707,
+      "mean_nll": 4.00261049087231,
+      "exact_matches": 0,
+      "eval_examples": 8,
+      "adapter_sha256": "2a3947153a3519e6996d1bd18b04ee966a26a838d8a277872164ef931c22fe92",
+      "tensors": 120,
+      "nonzero_lora_B_tensors": 60,
+      "nvidia_smi": "Tesla T4, <GPU_ID>, 580.82.07, 15360 MiB",
+      "torch": "2.6.0+cu124",
+      "cuda": "12.4",
+      "cudnn": 90100,
+      "evaluation_outputs": [
+        "\"ocean\"\n\n### Explanation:\nThe input word",
+        "dance\n\n### Explanation:\ndance is a",
+        "tiger\n\n### Explanation:\nThe input word tiger",
+        "field\n\n### Explanation:\n\nThe input field is",
+        "north\n\n### Explanation:\n\nThe input word is",
+        "south\n\n### Explanation:\n\nThe input word is",
+        "metal\n\n### Explanation:\n\nThe input word is",
+        "color\n\n### Explanation:\n\nThe input word is"
+      ]
+    }
+  },
+  "loss_steps": {
+    "training_loss": 16,
+    "validation_loss": 4
+  },
+  "max_abs_weight_difference": 0.0,
+  "all_tensor_bytes_equal": true,
+  "limits": "One model, seed, T4 and environment. Unsigned user-supplied archive; consistency is not independently authenticated execution. No base-model weights or original failed-attempt archive included."
+}

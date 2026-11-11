@@ -1,0 +1,10 @@
+{
+  "category": "empty",
+  "description": "Replay of logs/stage-3/20261110T090946Z-pytest-1bcd32/195-empty: base: empty; required value must be usable",
+  "expected_exit_code": 1,
+  "diagnostic": [
+    "base"
+  ],
+  "oracle": "https://trysoup.dev/docs/configuration",
+  "input_sha256": "2368d75bccd88db750029ffdc0fe68f9f058965ac0559426643b8c2ee3d98fea"
+}

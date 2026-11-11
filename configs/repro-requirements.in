@@ -1,0 +1,12 @@
+# Colab only. Never install this into the local Stage 3 environment.
+soup-cli[train]==0.77.2
+torch==2.6.0
+transformers==5.17.0
+trl==0.29.0
+peft==0.20.0
+accelerate==1.4.0
+datasets==4.0.0
+bitsandbytes==0.45.5
+numpy==2.2.6
+safetensors==0.8.0
+PyYAML==6.0.3

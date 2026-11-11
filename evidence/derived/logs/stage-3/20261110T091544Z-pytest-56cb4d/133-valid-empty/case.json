@@ -1,0 +1,11 @@
+{
+  "category": "valid-empty",
+  "description": "Optional seed=null is legal; do not reject all nulls",
+  "expected_exit_code": 0,
+  "diagnostic": [
+    "42 (unset default)",
+    "Config valid. Ready to train!"
+  ],
+  "oracle": "https://trysoup.dev/docs/seeds-and-reproducibility",
+  "input_sha256": "c80c1236ca219bbf2db7632d8b5fef3977d51ef37f1fdf2490d1bd5b1f9d99a0"
+}

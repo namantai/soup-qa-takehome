@@ -1,0 +1,12 @@
+{
+  "category": "positive-control",
+  "description": "Unmodified quickstart settings in isolated directory",
+  "expected_exit_code": 0,
+  "diagnostic": [
+    "Data OK:",
+    "20 train samples",
+    "Config valid. Ready to train!"
+  ],
+  "oracle": "train --help: --dry-run validates config and data without training; 20 local Alpaca rows",
+  "input_sha256": "57b078b54690833cb9aa92c56dac5659313a7d92b12d6c4b99fe0194a69b6151"
+}

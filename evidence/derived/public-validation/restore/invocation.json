@@ -1,0 +1,11 @@
+{
+  "command": [
+    ".venv/bin/python",
+    "-m",
+    "scripts.restore_public_artifacts"
+  ],
+  "cwd": "<LOCAL_PATH>",
+  "environment_overrides": {},
+  "started_utc": "2026-11-11T17:41:35.701048+00:00",
+  "timeout_seconds": 60
+}

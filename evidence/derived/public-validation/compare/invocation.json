@@ -1,0 +1,15 @@
+{
+  "command": [
+    ".venv/bin/python",
+    "-m",
+    "scripts.compare_repro",
+    "--root",
+    "runs/returned/stage4-20261111T063626Z",
+    "--output",
+    "runs/public-comparison.json"
+  ],
+  "cwd": "<LOCAL_PATH>",
+  "environment_overrides": {},
+  "started_utc": "2026-11-11T17:43:40.371635+00:00",
+  "timeout_seconds": 120
+}

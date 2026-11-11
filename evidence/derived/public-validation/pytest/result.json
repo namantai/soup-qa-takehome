@@ -1,0 +1,16 @@
+{
+  "command": [
+    "bash",
+    "--noprofile",
+    "--norc",
+    "-c",
+    "source .venv/bin/activate && python -m pytest -q"
+  ],
+  "cwd": "<LOCAL_PATH>",
+  "environment_overrides": {},
+  "started_utc": "2026-11-11T17:42:01.274991+00:00",
+  "timeout_seconds": 1200,
+  "exit_code": 1,
+  "termination": null,
+  "duration_seconds": 93.33114921000015
+}

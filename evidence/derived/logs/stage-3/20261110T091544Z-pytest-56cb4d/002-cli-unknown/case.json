@@ -1,0 +1,10 @@
+{
+  "category": "cli-unknown",
+  "description": "Unrecognized CLI option --qa-unknown-a",
+  "expected_exit_code": 2,
+  "diagnostic": [
+    "No such option"
+  ],
+  "oracle": "https://trysoup.dev/docs/exit-codes",
+  "input_sha256": "9d3ba7655a8cb4776970fb3ae6e5da2029741cd9a8792d90c6814db44c6a966f"
+}

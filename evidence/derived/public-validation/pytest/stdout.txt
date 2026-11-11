@@ -1,0 +1,57 @@
+.......s...................F........F......F.........FF................. [ 84%]
+.............                                                            [100%]
+=================================== FAILURES ===================================
+______________________ test_dropout_probability_above_one ______________________
+tests/test_config.py:103: in test_dropout_probability_above_one
+    @given(value=st.integers(11, 30).map(lambda n: n/10))
+                   ^^^^^^^^^^^
+tests/test_config.py:105: in test_dropout_probability_above_one
+    run(evidence, 'range-dropout', changed('training.lora.dropout', value),
+tests/cases.py:35: in run
+    check(evidence.run(category, yaml.safe_dump(config, sort_keys=False).encode(),
+scripts/evidence.py:150: in check
+    assert not problems, f"{case.relative_to(ROOT)}: {'; '.join(problems)}"
+           ^^^^^^^^^^^^
+E   AssertionError: logs/stage-3/20261111T174201Z-pytest-b0d760/123-range-dropout: expected exit 1, got 0; missing diagnostic: dropout; invalid input reported ready to train
+E   Failing test case: test_dropout_probability_above_one(
+E       evidence=<scripts.evidence.Evidence object at 0x7f86c942da50>,
+E       value=1.1,  # or any other generated value
+E   )
+_____________________ test_missing_empty_null[base-empty] ______________________
+tests/test_config.py:116: in test_missing_empty_null
+    run(evidence, 'empty', changed(path, values[mode], remove=(mode == 'missing')),
+tests/cases.py:35: in run
+    check(evidence.run(category, yaml.safe_dump(config, sort_keys=False).encode(),
+scripts/evidence.py:150: in check
+    assert not problems, f"{case.relative_to(ROOT)}: {'; '.join(problems)}"
+           ^^^^^^^^^^^^
+E   AssertionError: logs/stage-3/20261111T174201Z-pytest-b0d760/132-empty: expected exit 1, got 0; missing diagnostic: base; invalid input reported ready to train
+_____________ test_real_sft_preparation[scripts.probe_preprocess] ______________
+tests/test_sft_pipeline.py:22: in test_real_sft_preparation
+    assert result['exit_code']==0 and result['termination'] is None, f'Independent content/mask audit failed; original evidence: {directory.relative_to(ROOT)}'
+E   AssertionError: Independent content/mask audit failed; original evidence: logs/stage-5/20261111T174306Z-probe_preprocess-f19666
+E   assert (1 == 0)
+----------------------------- Captured stdout call -----------------------------
+<LOCAL_PATH> exit=1, termination=None
+______ test_gate_contract[zero-threshold-small-drop-task9-benchmarks9-0] _______
+tests/test_ship.py:36: in test_gate_contract
+    assert_case(ship.run(label,payload,threshold=threshold))
+scripts/ship_checks.py:87: in assert_case
+    assert not problems,f'{folder.relative_to(ROOT)}: '+ '; '.join(problems)
+           ^^^^^^^^^^^^
+E   AssertionError: logs/stage-5/20261111T174311Z-ship-d46f96/011-zero-threshold-small-drop: exit 0 != expected 2; decision differs from oracle; failed_rule differs from oracle; wrong benchmark regression flags; console verdict differs
+_ test_gate_contract[default-threshold-small-excess-task10-benchmarks10-0.05] __
+tests/test_ship.py:36: in test_gate_contract
+    assert_case(ship.run(label,payload,threshold=threshold))
+scripts/ship_checks.py:87: in assert_case
+    assert not problems,f'{folder.relative_to(ROOT)}: '+ '; '.join(problems)
+           ^^^^^^^^^^^^
+E   AssertionError: logs/stage-5/20261111T174311Z-ship-d46f96/012-default-threshold-small-excess: exit 0 != expected 2; decision differs from oracle; failed_rule differs from oracle; wrong benchmark regression flags; console verdict differs
+Original CLI evidence: logs/stage-3/20261111T174201Z-pytest-b0d760
+=========================== short test summary info ============================
+FAILED tests/test_config.py::test_dropout_probability_above_one - AssertionEr...
+FAILED tests/test_config.py::test_missing_empty_null[base-empty] - AssertionE...
+FAILED tests/test_sft_pipeline.py::test_real_sft_preparation[scripts.probe_preprocess]
+FAILED tests/test_ship.py::test_gate_contract[zero-threshold-small-drop-task9-benchmarks9-0]
+FAILED tests/test_ship.py::test_gate_contract[default-threshold-small-excess-task10-benchmarks10-0.05]
+5 failed, 79 passed, 1 skipped in 92.98s (0:01:32)

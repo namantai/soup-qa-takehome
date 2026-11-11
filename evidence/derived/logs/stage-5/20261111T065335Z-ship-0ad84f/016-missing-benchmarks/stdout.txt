@@ -1,0 +1,16 @@
+╭───────────────────────────────────────────────────── soup ship ──────────────────────────────────────────────────────╮
+│ DON'T SHIP                                                                                                           │
+│ Leg 1 task win (metric): 0.4000 -> 0.6000  [won]                                                                     │
+│ Judge numerics: unstamped                                                                                            │
+│                                                                                                                      │
+│ Leg 2 general suite (threshold 5.00%)                                                                                │
+│ ┏━━━━━━━━━━━━━━━━━┳━━━━━━┳━━━━━━━┳━━━┳━━━━━━━━━┓                                                                     │
+│ ┃ Benchmark       ┃ Base ┃ Tuned ┃ Δ ┃ Verdict ┃                                                                     │
+│ ┡━━━━━━━━━━━━━━━━━╇━━━━━━╇━━━━━━━╇━━━╇━━━━━━━━━┩                                                                     │
+│ │ (none measured) │    - │     - │ - │ missing │                                                                     │
+│ └─────────────────┴──────┴───────┴───┴─────────┘                                                                     │
+│                                                                                                                      │
+│ No general-suite benchmarks were measured — cannot verify the model didn't regress. Supply a general suite or        │
+│ --baseline.                                                                                                          │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Wrote verdict.json

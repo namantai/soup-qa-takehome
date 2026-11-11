@@ -1,0 +1,43 @@
+{
+  "task": {
+    "mode": "metric",
+    "base": 0.4,
+    "tuned": 0.6
+  },
+  "benchmarks": {
+    "general": {
+      "base": 0.8,
+      "tuned": 0.79
+    }
+  },
+  "provenance": {
+    "soup_version": "0.77.2",
+    "scorer_revision": 7,
+    "config_sha": "999b1f76d154fd3a69c2ddf289f04abce59580c5cb2973ad41074517261c86c8",
+    "base_model": "./models/smollm2-135m",
+    "binding": {
+      "schema_version": 1,
+      "adapter_merkle_root": null,
+      "task_eval_sha256": null,
+      "source_data_at_verdict_sha256": null,
+      "training_data": null,
+      "suites": {
+        "names": [
+          "general"
+        ],
+        "soup_version": "0.77.2",
+        "scorer_revision": 7
+      },
+      "policy": {
+        "task_mode": "metric",
+        "forgetting_threshold": 0.0,
+        "general_suite": [
+          "general"
+        ],
+        "judge_model_sha256": null,
+        "noise_floor_runs": null
+      },
+      "policy_sha256": "e167a16f70a0cf18718b213f8d27927d2f48244dd6840dd01b34a664302907a6"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+<LOCAL_PATH> exit=0, termination=None
+<LOCAL_PATH> exit=0, termination=None
+{
+  "session": "logs/stage-5/20261111T174336Z-preprocess-8f0e62",
+  "same_cache_key": true,
+  "normal_sft_has_marker": true,
+  "preprocess_has_marker": false,
+  "problems": [
+    "configured prompt_strategy marker absent from successful cache"
+  ]
+}

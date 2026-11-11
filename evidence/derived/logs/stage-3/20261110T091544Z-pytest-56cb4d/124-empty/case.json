@@ -1,0 +1,10 @@
+{
+  "category": "empty",
+  "description": "base: missing; required value must be usable",
+  "expected_exit_code": 1,
+  "diagnostic": [
+    "base"
+  ],
+  "oracle": "https://trysoup.dev/docs/configuration",
+  "input_sha256": "485f4d5db5436c0618420ffb66c3f77d5d96b8523302d783418b402c660c716b"
+}

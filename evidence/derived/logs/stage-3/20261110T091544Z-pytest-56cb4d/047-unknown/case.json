@@ -1,0 +1,11 @@
+{
+  "category": "unknown",
+  "description": "Unknown key at root: qa_unknown_a",
+  "expected_exit_code": 1,
+  "diagnostic": [
+    "unknown",
+    "qa_unknown_a"
+  ],
+  "oracle": "https://trysoup.dev/docs/configuration",
+  "input_sha256": "c32d4d53b31847e3bf5373444a2969b987b2890818faca75f7ec87d02cbef806"
+}

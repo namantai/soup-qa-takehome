@@ -1,0 +1,6 @@
+Loading config from input.yaml...
+Config validation error:
+
+  task: Input should be 'sft', 'dpo', 'grpo', 'ppo', 'reward_model', 'kto', 'orpo', 'simpo', 'ipo', 'bco', 'preference',
+'pretrain', 'embedding', 'prm', 'tts', 'classifier', 'reranker', 'cross_encoder', 'distill', 'unlearn', 
+'moe_lora_routing', 'online_dpo' or 'asr'

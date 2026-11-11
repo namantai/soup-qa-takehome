@@ -1,0 +1,12 @@
+{
+  "category": "positive-control",
+  "description": "Mandatory control before any negative test",
+  "expected_exit_code": 0,
+  "diagnostic": [
+    "Data OK: 18 train samples",
+    "Val: 2 samples",
+    "Config valid. Ready to train!"
+  ],
+  "oracle": "SFT split: 20 rows, 10% validation = 2 val and 18 train.",
+  "input_sha256": "57b078b54690833cb9aa92c56dac5659313a7d92b12d6c4b99fe0194a69b6151"
+}

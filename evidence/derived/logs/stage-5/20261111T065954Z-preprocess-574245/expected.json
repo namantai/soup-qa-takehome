@@ -1,0 +1,15 @@
+{
+  "rule": "Configured transformation must be applied or explicitly refused, not silently omitted",
+  "expected_messages": [
+    {
+      "role": "user",
+      "content": "QA_REQUIRED_PREFIX\nReturn the uppercase word only.\napple"
+    },
+    {
+      "role": "assistant",
+      "content": "APPLE"
+    }
+  ],
+  "marker": "QA_REQUIRED_PREFIX",
+  "source": "data.prompt_strategy schema description and user-provided pure callable; normal SFT formatting control"
+}

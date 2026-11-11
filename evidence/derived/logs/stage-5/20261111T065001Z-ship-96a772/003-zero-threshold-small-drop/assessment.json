@@ -1,0 +1,12 @@
+{
+  "problems": [
+    "exit 0 != expected 2",
+    "decision differs from oracle",
+    "failed_rule differs from oracle",
+    "wrong benchmark regression flags",
+    "console verdict differs"
+  ],
+  "assessment": "FAIL",
+  "actual_exit_code": 0,
+  "actual_decision": "SHIP"
+}

@@ -1,0 +1,15 @@
+Loading config from input.yaml...
+╭─────────────────────────────────────────────────── Training Setup ───────────────────────────────────────────────────╮
+│ Device:  CPU (no GPU detected)                                                                                       │
+│ Memory:  N/A (CPU mode)                                                                                              │
+│ Model:                                                                                                               │
+│ Task:    sft                                                                                                         │
+│ Backend: transformers                                                                                                │
+│ LoRA:    r=16, alpha=32                                                                                              │
+│ Quant:   none                                                                                                        │
+│ Seed:    42 (unset default)                                                                                          │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Dry run - validating data...
+Data OK: 18 train samples
+Val: 2 samples
+Config valid. Ready to train!

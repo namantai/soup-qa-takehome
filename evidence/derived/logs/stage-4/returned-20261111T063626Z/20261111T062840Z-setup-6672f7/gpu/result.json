@@ -1,0 +1,17 @@
+{
+  "command": [
+    "nvidia-smi",
+    "--query-gpu=name,uuid,driver_version,memory.total",
+    "--format=csv,noheader"
+  ],
+  "cwd": "<LOCAL_PATH>",
+  "environment_overrides": {
+    "UV_CACHE_DIR": "<LOCAL_PATH>",
+    "UV_PYTHON_INSTALL_DIR": "<LOCAL_PATH>"
+  },
+  "started_utc": "2026-11-11T06:28:40.821099+00:00",
+  "timeout_seconds": 30,
+  "exit_code": 0,
+  "termination": null,
+  "duration_seconds": 0.03294126499997674
+}

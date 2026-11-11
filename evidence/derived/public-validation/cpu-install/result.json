@@ -1,0 +1,24 @@
+{
+  "command": [
+    ".venv/bin/python",
+    "-m",
+    "pip",
+    "install",
+    "--target",
+    "runs/stage5-tokenizer-deps",
+    "--constraint",
+    "configs/repro-requirements.lock.txt",
+    "--only-binary=:all:",
+    "transformers==5.17.0",
+    "tokenizers==0.23.3",
+    "jinja2==3.1.6",
+    "datasets==4.0.0"
+  ],
+  "cwd": "<LOCAL_PATH>",
+  "environment_overrides": {},
+  "started_utc": "2026-11-11T17:41:35.767788+00:00",
+  "timeout_seconds": 1200,
+  "exit_code": 0,
+  "termination": null,
+  "duration_seconds": 25.506630690000748
+}

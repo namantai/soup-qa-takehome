@@ -1,0 +1,11 @@
+{
+  "category": "cli-conflict",
+  "description": "relora_steps=1 combined with --resume checkpoint",
+  "expected_exit_code": 1,
+  "diagnostic": [
+    "ReLoRA",
+    "cannot resume"
+  ],
+  "oracle": "train --help: --resume not supported when training.relora_steps is configured; https://trysoup.dev/docs/exit-codes",
+  "input_sha256": "792493b11d4138f14a2f71090756119c563556944bd30a985936d641140bf44e"
+}

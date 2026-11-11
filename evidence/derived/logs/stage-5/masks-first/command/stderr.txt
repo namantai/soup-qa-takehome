@@ -1,0 +1,15 @@
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] return_assistant_tokens_mask==True but chat template does not contain `{% generation %}` keyword.
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "<PROJECT>/scripts/probe_sft_masks.py", line 115, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "<PROJECT>/scripts/probe_sft_masks.py", line 80, in main
+    changed=inspect('train-on-prompt',full,messages,'full')
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<PROJECT>/scripts/probe_sft_masks.py", line 51, in inspect
+    assert output['input_ids']==offsets['input_ids'][:parsed.data.max_length]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

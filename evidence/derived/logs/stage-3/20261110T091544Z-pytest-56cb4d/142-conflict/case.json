@@ -1,0 +1,12 @@
+{
+  "category": "conflict",
+  "description": "Two exclusive PEFT methods enabled: ('use_dora', 'use_vera')",
+  "expected_exit_code": 1,
+  "diagnostic": [
+    "mutually exclusive",
+    "use_dora",
+    "use_vera"
+  ],
+  "oracle": "LoraConfig field descriptions: use_vera/use_dora/use_olora mutually exclusive",
+  "input_sha256": "e902b81b04b4a7dab75e391f76bd1d1be3666ace3e49ed04b7d61495235fff97"
+}

@@ -1,0 +1,11 @@
+{
+  "category": "valid-boundary",
+  "description": "Inclusive valid boundary: training.seed = 0",
+  "expected_exit_code": 0,
+  "diagnostic": [
+    "Config valid. Ready to train!",
+    "Seed:    0"
+  ],
+  "oracle": "https://trysoup.dev/docs/configuration; https://trysoup.dev/docs/seeds-and-reproducibility; https://docs.pytorch.org/docs/2.15/generated/torch.nn.Dropout.html",
+  "input_sha256": "d84e3b23c736044fec7aeed5764ea2bdb9aa2c510528ace0e0260535cb860642"
+}

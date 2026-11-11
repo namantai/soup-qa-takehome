@@ -1,0 +1,13 @@
+{
+  "task": {
+    "mode": "metric",
+    "base": 0.06,
+    "tuned": 0.06
+  },
+  "benchmarks": {
+    "general": {
+      "base": 0.5,
+      "tuned": 0.44
+    }
+  }
+}

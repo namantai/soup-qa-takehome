@@ -1,0 +1,10 @@
+{
+  "category": "range",
+  "description": "training.seed = -1, outside supported range",
+  "expected_exit_code": 1,
+  "diagnostic": [
+    "seed"
+  ],
+  "oracle": "https://trysoup.dev/docs/configuration; https://trysoup.dev/docs/seeds-and-reproducibility; installed schema field bounds",
+  "input_sha256": "06da559a61d1a9e5584d92e71bf125da0b94a25699001b46047dd2be5d8a6e68"
+}

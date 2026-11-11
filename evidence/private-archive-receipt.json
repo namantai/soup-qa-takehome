@@ -1,0 +1,12 @@
+{
+  "kind": "Restricted original evidence archive; protected access pending",
+  "filename": "soup-qa-original-evidence.zip",
+  "sha256": "ebd5d8f9bab0d6cd61beee0decd456fe2535e7b4ddec563e94653106468037d7",
+  "bytes": 34653844,
+  "original_members": 11126,
+  "manifest_sha256": "00ccb0eb0626ae086857dd2c609ac9c54a577f36e76b942ecf78dc584125bdeb",
+  "original_gpu_archives": {
+    "stage4-results-20261111T055350Z.zip": "b21addacc2333cc9ef451c620bad740a4da88456a047d6fa8c1a54074461d142",
+    "stage4-results-20261111T063626Z.zip": "0ed55654654bf350f60c59bfcb0051b2abd6a52cf0892ee0b20666b93b1dec1c"
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "exit_code": 3,
+  "source": "https://trysoup.dev/docs/soup-ship",
+  "reason": "Malformed or unsupported evidence field"
+}

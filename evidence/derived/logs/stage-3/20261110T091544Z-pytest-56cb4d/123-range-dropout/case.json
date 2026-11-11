@@ -1,0 +1,10 @@
+{
+  "category": "range-dropout",
+  "description": "Dropout probability 1.1 is greater than 1",
+  "expected_exit_code": 1,
+  "diagnostic": [
+    "dropout"
+  ],
+  "oracle": "https://docs.pytorch.org/docs/2.15/generated/torch.nn.Dropout.html; train --help promises config validation",
+  "input_sha256": "8c06d4ac63cd0580b1dda11a6a51a7aecfb39fb1fbe610d1ed36a104348f1837"
+}

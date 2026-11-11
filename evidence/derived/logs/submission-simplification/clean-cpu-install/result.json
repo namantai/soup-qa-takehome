@@ -1,0 +1,24 @@
+{
+  "command": [
+    ".venv/bin/python",
+    "-m",
+    "pip",
+    "install",
+    "--target",
+    "runs/stage5-tokenizer-deps",
+    "--constraint",
+    "configs/repro-requirements.lock.txt",
+    "--only-binary=:all:",
+    "transformers==5.17.0",
+    "tokenizers==0.23.3",
+    "jinja2==3.1.6",
+    "datasets==4.0.0"
+  ],
+  "cwd": "<PROJECT>/runs/submission-simplification/clean",
+  "environment_overrides": {},
+  "started_utc": "2026-11-11T16:21:22.810872+00:00",
+  "timeout_seconds": 300,
+  "exit_code": -9,
+  "termination": "TimeoutExpired",
+  "duration_seconds": 300.0292091250012
+}

@@ -1,0 +1,15 @@
+Loading config from configs/repro-a.yaml...
+╭─────────────────────────────────────────────────── Training Setup ───────────────────────────────────────────────────╮
+│ Device:  Tesla T4                                                                                                    │
+│ Memory:  14.6 GB                                                                                                     │
+│ Model:   ./models/smollm2-135m                                                                                       │
+│ Task:    sft                                                                                                         │
+│ Backend: transformers                                                                                                │
+│ LoRA:    r=4, alpha=8                                                                                                │
+│ Quant:   none                                                                                                        │
+│ Seed:    1234, data_seed=1234                                                                                        │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Dry run - validating data...
+Data OK: 32 train samples
+Val: 8 samples
+Config valid. Ready to train!

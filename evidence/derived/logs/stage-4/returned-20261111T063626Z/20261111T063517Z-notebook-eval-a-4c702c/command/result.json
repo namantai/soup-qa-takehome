@@ -1,0 +1,17 @@
+{
+  "command": [
+    "<LOCAL_PATH>",
+    "-m",
+    "scripts.repro_workflow",
+    "evaluate",
+    "--arm",
+    "a"
+  ],
+  "cwd": "<LOCAL_PATH>",
+  "environment_overrides": {},
+  "started_utc": "2026-11-11T06:35:17.177314+00:00",
+  "timeout_seconds": 2400,
+  "exit_code": 0,
+  "termination": null,
+  "duration_seconds": 18.120530626999994
+}

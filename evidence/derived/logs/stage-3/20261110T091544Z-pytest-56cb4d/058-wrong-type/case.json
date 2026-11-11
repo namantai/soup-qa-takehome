@@ -1,0 +1,10 @@
+{
+  "category": "wrong-type",
+  "description": "seed must be an integer, not bool: True",
+  "expected_exit_code": 1,
+  "diagnostic": [
+    "seed"
+  ],
+  "oracle": "https://trysoup.dev/docs/seeds-and-reproducibility",
+  "input_sha256": "9043ed14aae09c30fa11e5ce59a83d1983a1314f4bbec8e20d5bc0f4e8a7b639"
+}

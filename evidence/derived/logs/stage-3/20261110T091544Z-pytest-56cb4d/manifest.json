@@ -1,0 +1,32 @@
+{
+  "python": "3.11.16",
+  "platform": "Linux-7.2.11-arch1-1-x86_64-with-glibc2.44",
+  "packages": {
+    "soup-cli": "0.77.2",
+    "pytest": "9.2.0",
+    "hypothesis": "6.170.15",
+    "PyYAML": "6.0.3"
+  },
+  "source_sha256": {
+    "configs/baseline.yaml": "57b078b54690833cb9aa92c56dac5659313a7d92b12d6c4b99fe0194a69b6151",
+    "quickstart_data.jsonl": "b13e15b1cbcd5268125efc26419208c6350a7e479b661323a8ebfc2c1845d056",
+    "pytest.ini": "e0ccb8d660d11f3ebc753cbfffac86c6aa392e69a71b307d6942ebd8108fe907",
+    "tests/__init__.py": "2997551b278c6ed563dd3d7dce8802e687c19a03690561ec2d7d089f5b252380",
+    "tests/test_cli.py": "c598ff7216b09d12f834816a4a6ffcbdc81090f3b488dc2d664f73bda49cf63f",
+    "tests/test_config.py": "e27060c6169ac5425dd12362ba59bfbe76db4fd4e7704e2a2deb1fbd5d68cc6e",
+    "tests/cases.py": "0d336f89e1cf63996dc53b756c0f6397fa1fcdaddd2472eede80e3133484715a",
+    "tests/conftest.py": "8f293eaeba99b284769799146aed103610ebd9b791b3f8e5b3dcdb43185bdb04",
+    "scripts/__init__.py": "42f503596fe9b0d39a9109294f1b700c99597b709113dfa4962373baebe6db80",
+    "scripts/run_local_tests.py": "abb70dd6ee928c4e6a463b3966ce1a9c8f48ee3b683035525ab8d10c5633dcc5",
+    "scripts/evidence.py": "c273648fa493f1fa48a20e534aa5f39de43dcfae0f721d0e96d291adb75a01d8",
+    "scripts/replay_case.py": "9ff5b13254f42bd26d39e3634e624651fd65a53621fc82b7e3e46b19e811efaa"
+  },
+  "hypothesis": {
+    "seed": 20261110,
+    "database": null,
+    "deadline": null
+  },
+  "pytest_args": [
+    "-q"
+  ]
+}

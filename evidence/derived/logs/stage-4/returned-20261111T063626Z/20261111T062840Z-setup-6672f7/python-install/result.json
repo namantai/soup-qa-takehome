@@ -1,0 +1,18 @@
+{
+  "command": [
+    "<LOCAL_PATH>",
+    "python",
+    "install",
+    "3.11.16"
+  ],
+  "cwd": "<LOCAL_PATH>",
+  "environment_overrides": {
+    "UV_CACHE_DIR": "<LOCAL_PATH>",
+    "UV_PYTHON_INSTALL_DIR": "<LOCAL_PATH>"
+  },
+  "started_utc": "2026-11-11T06:28:44.843032+00:00",
+  "timeout_seconds": 900,
+  "exit_code": 0,
+  "termination": null,
+  "duration_seconds": 1.0691652209999916
+}

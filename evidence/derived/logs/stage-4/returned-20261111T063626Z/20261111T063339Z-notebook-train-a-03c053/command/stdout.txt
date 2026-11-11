@@ -1,0 +1,4 @@
+<LOCAL_PATH> exit=0, termination=None
+<LOCAL_PATH> exit=0, termination=None
+<LOCAL_PATH> exit=0, termination=None
+Run a: real CLI exit 0, complete 16-step state, adapter and tracker record found. Evaluation/comparison still required.

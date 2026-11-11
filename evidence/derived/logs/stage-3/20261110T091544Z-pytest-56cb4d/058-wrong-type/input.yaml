@@ -1,0 +1,16 @@
+base: TinyLlama/TinyLlama-1.1B-Chat-v1.0
+task: sft
+data:
+  train: ./quickstart_data.jsonl
+  format: alpaca
+  val_split: 0.1
+training:
+  epochs: 1
+  lr: 2e-4
+  batch_size: auto
+  lora:
+    r: 16
+    alpha: 32
+  quantization: none
+  seed: true
+output: ./quickstart_output

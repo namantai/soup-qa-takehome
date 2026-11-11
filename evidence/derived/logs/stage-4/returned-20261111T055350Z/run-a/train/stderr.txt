@@ -1,0 +1,7 @@
+Loading weights:   0%|          | 0/272 [00:00<?, ?it/s]Loading weights:  35%|███▍      | 95/272 [00:00<00:00, 940.74it/s]Loading weights:  85%|████████▍ | 230/272 [00:00<00:00, 1174.42it/s]Loading weights: 100%|██████████| 272/272 [00:00<00:00, 1188.79it/s]
+Map:   0%|          | 0/32 [00:00<?, ? examples/s]Map:   0%|          | 0/32 [00:00<?, ? examples/s]
+
+Error: ValueError: Tokenizer has no chat_template. Pass data.chat_template: chatml (or 
+llama3/qwen2.5/mistral/gemma3/phi4/deepseek-r1) in soup.yaml, or supply a raw Jinja string. The previous silent f-string
+fallback produced wrong loss labels and was removed in v0.36.0.
+Run with --verbose for the full traceback.

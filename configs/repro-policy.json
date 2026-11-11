@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "fixed_before_gpu_runs": true,
+  "loss_abs_limit": 0.009950330853168092,
+  "weight_relative_l2_limit": 0.0009765625,
+  "greedy_token_mismatches_allowed": 0,
+  "interpretation": "Predeclared screening criteria, not a universal guarantee or a software SHIP decision. Human review required even within bounds.",
+  "loss_rationale": "ln(1.01): at most 1% perplexity ratio for comparable mean NLL. Logged train loss is rounded, so also report exact equality at available resolution.",
+  "weight_rationale": "2^-10 is one FP16 spacing near 1, used as a relative L2 screening scale for this T4 FP16-compute experiment, not a bound on error accumulation or FP32 adapter storage. Zero denominators handled explicitly; nonzero differences always reported.",
+  "behavior_rationale": "Eight held-out examples are too coarse to tolerate one differing output unnoticed (12.5% of the sample); require identical generated token IDs for the screen."
+}

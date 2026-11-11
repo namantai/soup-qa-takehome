@@ -1,0 +1,17 @@
+{
+  "command": [
+    ".venv/bin/python",
+    "-m",
+    "pip",
+    "install",
+    "-r",
+    "requirements.txt"
+  ],
+  "cwd": "<LOCAL_PATH>",
+  "environment_overrides": {},
+  "started_utc": "2026-11-11T17:41:22.582015+00:00",
+  "timeout_seconds": 600,
+  "exit_code": 0,
+  "termination": null,
+  "duration_seconds": 13.117369096000402
+}

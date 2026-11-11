@@ -1,0 +1,10 @@
+{
+  "category": "valid-relora",
+  "description": "ReLoRA alone is a positive control (steps=1)",
+  "expected_exit_code": 0,
+  "diagnostic": [
+    "Config valid. Ready to train!"
+  ],
+  "oracle": "train --help permits ReLoRA without resume",
+  "input_sha256": "792493b11d4138f14a2f71090756119c563556944bd30a985936d641140bf44e"
+}

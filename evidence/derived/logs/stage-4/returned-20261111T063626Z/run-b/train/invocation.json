@@ -1,0 +1,30 @@
+{
+  "command": [
+    "<LOCAL_PATH>",
+    "train",
+    "--config",
+    "configs/repro-b.yaml",
+    "--yes"
+  ],
+  "cwd": "<LOCAL_PATH>",
+  "environment_overrides": {
+    "HF_HUB_OFFLINE": "1",
+    "HF_DATASETS_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "HF_HUB_DISABLE_TELEMETRY": "1",
+    "SOUP_TELEMETRY": "0",
+    "DO_NOT_TRACK": "1",
+    "WANDB_MODE": "disabled",
+    "TOKENIZERS_PARALLELISM": "false",
+    "PYTHONHASHSEED": "1234",
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "NO_COLOR": "1",
+    "TERM": "dumb",
+    "COLUMNS": "120",
+    "SOUP_DB_PATH": "<LOCAL_PATH>"
+  },
+  "started_utc": "2026-11-11T06:34:42.456537+00:00",
+  "timeout_seconds": 1800
+}

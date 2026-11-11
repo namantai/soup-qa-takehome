@@ -1,0 +1,13 @@
+{
+  "command": [
+    ".venv/bin/python",
+    "-m",
+    "scripts.probe_preprocess"
+  ],
+  "cwd": "<LOCAL_PATH>",
+  "environment_overrides": {
+    "PYTHONPATH": "<LOCAL_PATH>"
+  },
+  "started_utc": "2026-11-11T17:43:35.544946+00:00",
+  "timeout_seconds": 120
+}

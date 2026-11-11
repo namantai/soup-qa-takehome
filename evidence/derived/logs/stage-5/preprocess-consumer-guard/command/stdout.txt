@@ -1,0 +1,5 @@
+Loading config from logs/stage-5/preprocess-consumer-guard/config.yaml...
+Config validation error:
+
+  data: format='pre_tokenized' cannot be combined with data.prompt_strategy; soup data preprocess never applies it, so 
+the cached ids do not contain it. Remove it, or train from the source format.

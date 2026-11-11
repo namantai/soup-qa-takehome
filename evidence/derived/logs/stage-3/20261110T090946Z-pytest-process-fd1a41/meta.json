@@ -1,0 +1,27 @@
+{
+  "command": [
+    "../../../.venv/bin/python",
+    "launch.py"
+  ],
+  "cwd": "logs/stage-3/20261110T090946Z-pytest-process-fd1a41",
+  "started_utc": "2026-11-10T09:09:46.352500+00:00",
+  "timeout_seconds": 600,
+  "output_limit_bytes": 2097152,
+  "environment_overrides": {
+    "HF_HUB_OFFLINE": "1",
+    "HF_DATASETS_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "HF_HUB_DISABLE_TELEMETRY": "1",
+    "WANDB_MODE": "disabled",
+    "DO_NOT_TRACK": "1",
+    "CUDA_VISIBLE_DEVICES": "",
+    "NO_COLOR": "1",
+    "TERM": "dumb",
+    "COLUMNS": "120",
+    "PYTHONHASHSEED": "0"
+  },
+  "exit_code": 1,
+  "duration_seconds": 97.89777973200034,
+  "stopped_by_harness": null,
+  "output_bytes": 4192
+}
